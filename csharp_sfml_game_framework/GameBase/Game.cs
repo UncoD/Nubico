@@ -19,13 +19,25 @@ namespace csharp_sfml_game_framework
         public SoundController SoundController;
         public MusicController MusicController;
 
-        public Game(int width, int height, string name)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="name"></param>
+        /// <param name="style">
+        /// По умолчанию активна кнопка скрытия окна, нельзя изменять размер
+        /// Styles.Fullscreen - полноэкранный режим
+        /// Styles.Default - можно закрывать/сворачивать окно, изменять раземер
+        /// </param>
+
+        public Game(int width, int height, string name, Styles style = Styles.Close)
         {
             // Для внедрения зависимости повсюду
             GameProvider.SetDependency(this);
             TexturesProvider.SetDependency(new Dictionary<string, Texture>());
 
-            Window = new RenderWindow(new VideoMode((uint) width, (uint) height), name);
+            Window = new RenderWindow(new VideoMode((uint) width, (uint) height), name, style);
             Window.SetVerticalSyncEnabled(true);
             Window.Closed += (s, a) => Window.Close();
             Window.Resized += (s, a) => Window.SetView(new View(new FloatRect(0, 0, a.Width, a.Height)));

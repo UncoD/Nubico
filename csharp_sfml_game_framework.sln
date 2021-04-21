@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Outrun", "Outrun\Outrun.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris", "Tetris\Tetris.csproj", "{62BF8682-8B78-45FD-92C3-9216E13235F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlappyFish", "FlappyFish\FlappyFish.csproj", "{AEC17141-CA34-4918-85C9-EEFBC713E36F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jRPG", "jRPG\jRPG.csproj", "{252B6E38-F2EB-4A29-8BBB-BB71E9E689C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroid", "Asteroid\Asteroid.csproj", "{3CFA738C-59A1-43CD-97AD-DB2CF398EE39}"
@@ -20,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstGame", "MyFirstGame\MyFirstGame.csproj", "{BB7FA163-8CCF-47F5-A736-721F1B67584A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealContra", "RealContra\RealContra.csproj", "{59399A28-44AF-4468-BF04-8352CBC34B36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleSnake", "DoubleSnake\DoubleSnake.csproj", "{3781F73F-2B7F-4D8B-8663-6828C429B861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,18 +79,6 @@ Global
 		{62BF8682-8B78-45FD-92C3-9216E13235F7}.Release|x64.Build.0 = Release|Any CPU
 		{62BF8682-8B78-45FD-92C3-9216E13235F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{62BF8682-8B78-45FD-92C3-9216E13235F7}.Release|x86.Build.0 = Release|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Debug|x64.Build.0 = Debug|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Debug|x86.Build.0 = Debug|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Release|x64.ActiveCfg = Release|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Release|x64.Build.0 = Release|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Release|x86.ActiveCfg = Release|Any CPU
-		{AEC17141-CA34-4918-85C9-EEFBC713E36F}.Release|x86.Build.0 = Release|Any CPU
 		{252B6E38-F2EB-4A29-8BBB-BB71E9E689C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{252B6E38-F2EB-4A29-8BBB-BB71E9E689C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252B6E38-F2EB-4A29-8BBB-BB71E9E689C0}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -139,6 +127,18 @@ Global
 		{59399A28-44AF-4468-BF04-8352CBC34B36}.Release|x64.Build.0 = Release|Any CPU
 		{59399A28-44AF-4468-BF04-8352CBC34B36}.Release|x86.ActiveCfg = Release|Any CPU
 		{59399A28-44AF-4468-BF04-8352CBC34B36}.Release|x86.Build.0 = Release|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Debug|x64.Build.0 = Debug|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Debug|x86.Build.0 = Debug|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Release|x64.ActiveCfg = Release|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Release|x64.Build.0 = Release|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Release|x86.ActiveCfg = Release|Any CPU
+		{3781F73F-2B7F-4D8B-8663-6828C429B861}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

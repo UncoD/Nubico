@@ -56,16 +56,16 @@ namespace csharp_sfml_game_framework
         {
             SpriteController.TryDraw(target);
 
-//            var board = new RectangleShape(new Vector2f(Width, Height))
-//            {
-//                OutlineColor = Color.Green,
-//                FillColor = Color.Transparent,
-//                OutlineThickness = 2,
-//                Position = Position,
-//                Origin = new Vector2f(Width / 2, Height / 2)
-//            };
-//
-//            target.Draw(board);
+            //var border = new RectangleShape(new Vector2f(Width, Height))
+            //{
+            //    OutlineColor = Color.Green,
+            //    FillColor = Color.Transparent,
+            //    OutlineThickness = 2,
+            //    Position = Position,
+            //    Origin = new Vector2f(Width / 2, Height / 2)
+            //};
+
+            //target.Draw(border);
         }
         
         public void MoveIt(float dx, float dy)
@@ -119,9 +119,14 @@ namespace csharp_sfml_game_framework
         public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClick) { }
         public virtual void BeforeDeleteFromScene() { }
 
-        public bool ClickedOnThis(Vector2i position)
+        public bool HoverOnThis(Vector2i position)
         {
             return SpriteController.GetBounds().Contains(position.X, position.Y);
+        }
+
+        public bool HoverOnThis()
+        {
+            return HoverOnThis(Mouse.GetPosition(Game.Window));
         }
     }
 }

@@ -1,5 +1,6 @@
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 
 namespace csharp_sfml_game_framework
 {
@@ -74,6 +75,16 @@ namespace csharp_sfml_game_framework
         {
             states.Transform *= Transform;
             target.Draw(Text);
+        }
+
+        public new bool HoverOnThis(Vector2i position)
+        {
+            return GetBounds().Contains(position.X, position.Y);
+        }
+
+        public new bool HoverOnThis()
+        {
+            return HoverOnThis(Mouse.GetPosition(Game.Window));
         }
     }
 }
