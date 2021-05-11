@@ -9,7 +9,7 @@ namespace MyFirstGame
         public LoseScene()
         {
             var helloText = new HelloText("Game Over!", 200, 100);
-            helloText.SetSize(30);
+            helloText.Size = 30;
             helloText.SetColor(Color.Red);
 
             var restartText = new HelloText("Press R to restart", 300, 180);

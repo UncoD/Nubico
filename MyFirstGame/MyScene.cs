@@ -11,7 +11,7 @@ namespace MyFirstGame
         public MyScene()
         {
             var helloText = new HelloText("Hello World!", 130, 50);
-            helloText.SetSize(30);
+            helloText.Size = 30;
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
@@ -27,7 +27,7 @@ namespace MyFirstGame
             }
 
             scoreText = new TextObject("0", 230, 350);
-            scoreText.SetSize(25);
+            scoreText.Size = 25;
             AddToScene(scoreText);
         }
 

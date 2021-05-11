@@ -8,16 +8,18 @@ namespace csharp_sfml_game_framework
 {
     public class Game
     {
-        public readonly Dictionary<Keyboard.Key, bool> PressedKeys = new Dictionary<Keyboard.Key, bool>();
-        public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClick)> ClickedMouseButtons =
-            new Dictionary<Mouse.Button, (int, int, bool)>();
-        internal readonly RenderWindow Window;
-
         private GameScene currentScene;
         private Clock clock = new Clock();
 
-        public SoundController SoundController;
-        public MusicController MusicController;
+        internal readonly RenderWindow Window;
+
+        public readonly Dictionary<Keyboard.Key, bool> PressedKeys = new Dictionary<Keyboard.Key, bool>();
+        public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClick)> ClickedMouseButtons =
+            new Dictionary<Mouse.Button, (int, int, bool)>();
+
+        public readonly SoundController SoundController;
+        public readonly MusicController MusicController;
+        public int Score { get; set; }
 
         /// <summary>
         /// 
@@ -66,13 +68,11 @@ namespace csharp_sfml_game_framework
             MusicController = new MusicController();
             MusicController.LoopMusic(true);
         }
-
-        public int Width => (int) Window.Size.X;
-        public int Height => (int) Window.Size.Y;
-        public int Score { get; set; }
+        public int Width => (int)Window.Size.X;
+        public int Height => (int)Window.Size.Y;
 
         //public Vector2f CursorPosition => Window.MapPixelToCoords(Mouse.GetPosition());
-        public Vector2f CursorPosition => (Vector2f) Mouse.GetPosition(Window);
+        public Vector2f CursorPosition => (Vector2f)Mouse.GetPosition(Window);
 
         public void SetWindowTitle(string title)
         {
@@ -109,18 +109,18 @@ namespace csharp_sfml_game_framework
         {
             while (Window.IsOpen)
             {
-                Window.DispatchEvents();
 
-                if (clock.ElapsedTime.AsSeconds() > 0.004)
+                if (clock.ElapsedTime.AsSeconds() > 0.0004)
                 {
+                    Window.DispatchEvents();
                     clock.Restart();
                     currentScene.UpdateScene();
+
+                    Window.Clear();
+                    currentScene.DrawScene();
+
+                    Window.Display();
                 }
-
-                Window.Clear();
-                currentScene.DrawScene();
-
-                Window.Display();
             }
         }
 

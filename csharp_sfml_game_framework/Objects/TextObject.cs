@@ -1,6 +1,7 @@
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using System;
 
 namespace csharp_sfml_game_framework
 {
@@ -36,24 +37,14 @@ namespace csharp_sfml_game_framework
             return Text.GetGlobalBounds();
         }
 
-        public void SetText(string text)
+        public void SetText(object text)
         {
-            Text.DisplayedString = text;
-        }
-
-        public void SetText(int text)
-        {
-            Text.DisplayedString = text.ToString();
+            Text.DisplayedString = Convert.ToString(text);
         }
 
         public void SetColor(Color color)
         {
             Text.FillColor = color;
-        }
-
-        public void SetSize(int height)
-        {
-            Text.CharacterSize = (uint) height;
         }
 
         public override string ToString()

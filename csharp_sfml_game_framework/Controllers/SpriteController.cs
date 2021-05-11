@@ -90,6 +90,7 @@ namespace csharp_sfml_game_framework
         {
             isAnimationPlay = false;
         }
+
         public void SetAnimationDelay(string animationName, int delay)
         {
             animations[animationName].SetDelay(delay);

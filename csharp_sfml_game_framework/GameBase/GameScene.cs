@@ -10,15 +10,15 @@ namespace csharp_sfml_game_framework
     /// </summary>
     public class GameScene : IOnKeyPressable, IOnMouseClickable
     {
-        public Game Game = GameProvider.ProvideDependency();
+        public readonly Game Game = GameProvider.ProvideDependency();
 
         // Списки объектов
-        public  List<GameObject> GameObjects = new List<GameObject>();
-        public SoundController SoundController = new SoundController();
-        public MusicController MusicController;
+        public readonly SoundController SoundController = new SoundController();
+        public readonly MusicController MusicController;
+        private List<GameObject> gameObjects = new List<GameObject>();
         private readonly List<GameObject> objectsPreparedToRemove = new List<GameObject>();
         private readonly List<GameObject> objectsPreparedToAdd = new List<GameObject>();
-        private  List<IOnCollidable> collidables = new List<IOnCollidable>();
+        private readonly List<IOnCollidable> collidables = new List<IOnCollidable>();
 
         /// <param name="game">Игровая сцена должна знать об игре, в которой она находится.</param>
         public GameScene()
@@ -27,9 +27,9 @@ namespace csharp_sfml_game_framework
             MusicController = Game.MusicController;
         }
 
-        public void DrawScene()
+        internal void DrawScene()
         {
-            foreach (var gameObject in GameObjects)
+            foreach (var gameObject in gameObjects)
             {
                 if (gameObject.IsBroken)
                 {
@@ -39,7 +39,7 @@ namespace csharp_sfml_game_framework
             }
         }
 
-        public void UpdateScene()
+        internal void UpdateScene()
         {
             CheckIntersections();
             CheckKeyPressedAndMouseClicked();
@@ -53,7 +53,7 @@ namespace csharp_sfml_game_framework
         
         private void UpdateObjects()
         {
-            foreach (var gameObject in GameObjects)
+            foreach (var gameObject in gameObjects)
             {
                 if (gameObject.IsBroken)
                 {
@@ -71,7 +71,7 @@ namespace csharp_sfml_game_framework
                 {
                     OnKeyPress(key.Key, key.Value);
 
-                    foreach (var item in GameObjects)
+                    foreach (var item in gameObjects)
                     {
                         if (item.IsBroken)
                         {
@@ -90,7 +90,7 @@ namespace csharp_sfml_game_framework
                 {
                     OnMouseClick(button.Key, new Vector2i(button.Value.x, button.Value.y), button.Value.IsAlreadyClick);
 
-                    foreach (var item in GameObjects)
+                    foreach (var item in gameObjects)
                     {
                         if (item.IsBroken)
                         {
@@ -141,7 +141,7 @@ namespace csharp_sfml_game_framework
         {
             foreach (var gameObject in objectsPreparedToRemove)
             {
-                GameObjects.Remove(gameObject);
+                gameObjects.Remove(gameObject);
 
                 if (gameObject is IOnCollidable collide)
                 {
@@ -159,7 +159,7 @@ namespace csharp_sfml_game_framework
                 item.Game = Game;
                 item.GameScene = this;
                 item.IsBroken = false;
-                GameObjects.Add(item);
+                gameObjects.Add(item);
 
                 if (item is IOnCollidable collide)
                 {
@@ -167,7 +167,7 @@ namespace csharp_sfml_game_framework
                 }
             }
 
-            GameObjects = GameObjects.OrderBy(o => o.DrawPriority).ToList();
+            gameObjects = gameObjects.OrderBy(o => o.DrawPriority).ToList();
             
             objectsPreparedToAdd.Clear();
         }
