@@ -53,7 +53,7 @@ namespace MyFirstGame.Scenes
             }
         }
 
-        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClick)
+        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
         {
             if (HoverOnThis())
             {
@@ -80,7 +80,7 @@ namespace MyFirstGame.Scenes
             }
         }
 
-        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClick)
+        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
         {
             if (HoverOnThis())
             {

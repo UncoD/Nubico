@@ -14,10 +14,9 @@ namespace csharp_sfml_game_framework
         internal readonly RenderWindow Window;
 
         public readonly Dictionary<Keyboard.Key, bool> PressedKeys = new Dictionary<Keyboard.Key, bool>();
-        public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClick)> ClickedMouseButtons =
+        public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClicked)> ClickedMouseButtons =
             new Dictionary<Mouse.Button, (int, int, bool)>();
 
-        public readonly SoundController SoundController;
         public readonly MusicController MusicController;
         public int Score { get; set; }
 
@@ -44,27 +43,11 @@ namespace csharp_sfml_game_framework
             Window.Closed += (s, a) => Window.Close();
             Window.Resized += (s, a) => Window.SetView(new View(new FloatRect(0, 0, a.Width, a.Height)));
 
-            Window.KeyPressed += (s, e) =>
-            {
-                PressedKeys[e.Code] = false;
-            };
+            Window.KeyPressed += (s, e) => PressedKeys[e.Code] = false;
+            Window.KeyReleased += (s, e) => PressedKeys.Remove(e.Code);
+            Window.MouseButtonPressed += (s, e) => ClickedMouseButtons[e.Button] = (e.X, e.Y, false);
+            Window.MouseButtonReleased += (s, e) => ClickedMouseButtons.Remove(e.Button);
 
-            Window.KeyReleased += (s, e) =>
-            {
-                PressedKeys.Remove(e.Code);
-            };
-
-            Window.MouseButtonPressed += (s, e) =>
-            {
-                ClickedMouseButtons[e.Button] = (e.X, e.Y, false);
-            };
-
-            Window.MouseButtonReleased += (s, e) =>
-            {
-                ClickedMouseButtons.Remove(e.Button);
-            };
-            
-            SoundController = new SoundController();
             MusicController = new MusicController();
             MusicController.LoopMusic(true);
         }

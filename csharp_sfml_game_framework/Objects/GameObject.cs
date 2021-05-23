@@ -6,8 +6,8 @@ namespace csharp_sfml_game_framework
 {
     public class GameObject : Transformable, Drawable, IOnKeyPressable, IOnMouseClickable
     {
-        public Game Game = GameProvider.ProvideDependency();
-        public GameScene GameScene = CurrentSceneProvider.ProvideDependency();
+        public readonly Game Game = GameProvider.ProvideDependency();
+        public readonly GameScene GameScene = CurrentSceneProvider.ProvideDependency();
         public int DrawPriority = 0;
         internal SpriteController SpriteController;
         public float X => Position.X;
@@ -73,22 +73,27 @@ namespace csharp_sfml_game_framework
             Position += new Vector2f(dx, dy);
         }
 
-        public void AddAnimation(string animationName, int frequency, params string[] pathsToTextures)
+        public void AddAnimation(string animationName, float frequency, params string[] pathsToTextures)
         {
             SpriteController.AddAnimation(animationName, frequency, pathsToTextures);
         }
 
-        public void PlayAnimation(string animationName)
+        public void PlayAnimation(string animationName, bool restart = false)
         {
-            SpriteController.PlayAnimation(animationName);
+            SpriteController.PlayAnimation(animationName, restart);
         }
 
-        public void StopAnimation()
+        public void StopAnimation(bool withRestart = false)
         {
-            SpriteController.StopAnimation();
+            SpriteController.StopAnimation(withRestart);
         }
 
-        public void SetAnimationDelay(string animationName, int delay)
+        public string CurrentAnimationName()
+        {
+            return SpriteController.CurrentAnimationName();
+        }
+
+        public void SetAnimationDelay(string animationName, float delay)
         {
             SpriteController.SetAnimationDelay(animationName, delay);
         }
@@ -116,7 +121,7 @@ namespace csharp_sfml_game_framework
         public virtual void OnEachFrame() { }
         public virtual void OnHealthChanges(int health) { }
         public virtual void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed) { }
-        public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClick) { }
+        public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked) { }
         public virtual void BeforeDeleteFromScene() { }
 
         public bool HoverOnThis(Vector2i position)

@@ -11,7 +11,7 @@ namespace csharp_sfml_game_framework
         /// </summary>
         /// <param name="mouseButton"></param>
         /// <param name="position"></param>
-        /// <param name="isAlreadyClick"></param>
-        void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClick);
+        /// <param name="IsAlreadyClicked"></param>
+        void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked);
     }
 }

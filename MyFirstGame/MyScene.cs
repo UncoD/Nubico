@@ -1,5 +1,6 @@
 ﻿using csharp_sfml_game_framework;
 using SFML.Graphics;
+using SFML.System;
 
 namespace MyFirstGame
 {
@@ -10,15 +11,16 @@ namespace MyFirstGame
         private TextObject scoreText;
         public MyScene()
         {
-            var helloText = new HelloText("Hello World!", 130, 50);
+            var helloText = new HelloText("Hello World!", 0, 50);
             helloText.Size = 30;
+            helloText.Position = new Vector2f(Game.Width / 2, 50);
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
             mario = new Mario(50, 238);
             AddToScene(mario);
 
-            enemy = new Enemy(250, 242);
+            enemy = new Enemy(Game.Width / 2, 242);
             AddToScene(enemy);
 
             for (var i = 0; i < 15; i++)
@@ -26,7 +28,7 @@ namespace MyFirstGame
                 AddToScene(new Ground(36 * i, 280));
             }
 
-            scoreText = new TextObject("0", 230, 350);
+            scoreText = new TextObject("0", Game.Width / 2, 350);
             scoreText.Size = 25;
             AddToScene(scoreText);
         }

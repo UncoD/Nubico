@@ -9,8 +9,7 @@ namespace csharp_sfml_game_framework
     internal class SpriteController
     {
         internal Sprite CurrentSprite { get; private set; }
-        private AnimationController currentAnimation;
-        private bool isAnimationPlay;
+        private string currentAnimation = "";
         private readonly Dictionary<string, Texture> textures = TexturesProvider.ProvideDependency();
         private readonly Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
         private readonly Dictionary<string, AnimationController> animations = new Dictionary<string, AnimationController>();
@@ -54,7 +53,7 @@ namespace csharp_sfml_game_framework
             return texture;
         }
 
-        public void AddAnimation(string animationName, int frequency, params string[] pathsToTextures)
+        public void AddAnimation(string animationName, float frequency, params string[] pathsToTextures)
         {
             if (!animations.ContainsKey(animationName))
             {
@@ -69,31 +68,56 @@ namespace csharp_sfml_game_framework
 
         internal void UpdateAnimation()
         {
-            if (isAnimationPlay)
+            if (animations.ContainsKey(currentAnimation) && animations[currentAnimation].Playing)
             {
-                CurrentSprite = currentAnimation.NextSprite();
+                CurrentSprite = animations[currentAnimation].NextSprite();
             }
         }
 
-        public void PlayAnimation(string animationName)
+        public string CurrentAnimationName()
         {
-            isAnimationPlay = true;
+            return animations.ContainsKey(currentAnimation) && animations[currentAnimation].Playing ? currentAnimation : "";
+        }
+
+        public void PlayAnimation(string animationName, bool restart = false)
+        {
             if (!animations.ContainsKey(animationName))
             {
                 throw new ArgumentException("Анимация с таким именем не найдена");
             }
 
-            currentAnimation = animations[animationName];
+
+            if (animations.ContainsKey(currentAnimation))
+            {
+                animations[currentAnimation].StopAnimation();
+            }
+            currentAnimation = animationName;
+            if (restart)
+            {
+                animations[currentAnimation].RestartAnimaton();
+            }
+            animations[currentAnimation].PlayAnimation();
         }
 
-        public void StopAnimation()
+        public void StopAnimation(bool withRestart = false)
         {
-            isAnimationPlay = false;
+            if (animations.ContainsKey(currentAnimation))
+            {
+                if (withRestart)
+                {
+                    animations[currentAnimation].RestartAnimaton();
+                    CurrentSprite = animations[currentAnimation].NextSprite();
+                }
+                animations[currentAnimation].StopAnimation();
+            }
         }
 
-        public void SetAnimationDelay(string animationName, int delay)
+        public void SetAnimationDelay(string animationName, float delay)
         {
-            animations[animationName].SetDelay(delay);
+            if (animations.ContainsKey(currentAnimation))
+            {
+                animations[animationName].SetDelay(delay);
+            }
         }
 
         internal void SynchronizeSprite(GameObject owner)

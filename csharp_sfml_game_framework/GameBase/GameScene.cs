@@ -88,7 +88,7 @@ namespace csharp_sfml_game_framework
             {
                 foreach (var button in Game.ClickedMouseButtons.ToList())
                 {
-                    OnMouseClick(button.Key, new Vector2i(button.Value.x, button.Value.y), button.Value.IsAlreadyClick);
+                    OnMouseClick(button.Key, new Vector2i(button.Value.x, button.Value.y), button.Value.IsAlreadyClicked);
 
                     foreach (var item in gameObjects)
                     {
@@ -96,7 +96,7 @@ namespace csharp_sfml_game_framework
                         {
                             continue;
                         }
-                        item.OnMouseClick(button.Key, new Vector2i(button.Value.x, button.Value.y), button.Value.IsAlreadyClick);
+                        item.OnMouseClick(button.Key, new Vector2i(button.Value.x, button.Value.y), button.Value.IsAlreadyClicked);
                     }
 
                     Game.ClickedMouseButtons[button.Key] = (button.Value.x, button.Value.y, true);
@@ -156,8 +156,9 @@ namespace csharp_sfml_game_framework
         {
             foreach (var item in objectsPreparedToAdd)
             {
-                item.Game = Game;
-                item.GameScene = this;
+                // maybe depricated
+                //item.Game = Game;
+                //item.GameScene = this;
                 item.IsBroken = false;
                 gameObjects.Add(item);
 
@@ -174,6 +175,6 @@ namespace csharp_sfml_game_framework
 
         public virtual void OnEachFrame() { }
         public virtual void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed) { }
-        public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClick) { }
+        public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked) { }
     }
 }

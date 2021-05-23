@@ -10,7 +10,11 @@ namespace csharp_sfml_game_framework
         public int Size
         {
             get => (int) Text.CharacterSize;
-            set => Text.CharacterSize = (uint) value;
+            set {
+                Text.CharacterSize = (uint)value;
+                Text.Origin = new Vector2f(Width / 2, Height / 2);
+                Origin = Text.Origin;
+            }
         }
 
         protected readonly Text Text;

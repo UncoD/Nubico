@@ -7,7 +7,7 @@ namespace Outrun
     {
         public Background(string type, float x, float y) : base(x, y, $"Art/{type}_background_000.png")
         {
-            AddAnimation("back", 12,
+            AddAnimation("back", 0.5f,
                 $"Art/{type}_background_000.png",
                 $"Art/{type}_background_001.png",
                 $"Art/{type}_background_002.png",
@@ -22,7 +22,7 @@ namespace Outrun
 
         public override void OnEachFrame()
         {
-            SetAnimationDelay("back", 12 - Car.Turbo);
+            SetAnimationDelay("back", 0.5f - Car.Turbo * 0.01f);
         }
     }
 }

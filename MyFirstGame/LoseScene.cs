@@ -1,5 +1,6 @@
 ﻿using csharp_sfml_game_framework;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 
 namespace MyFirstGame
@@ -8,11 +9,12 @@ namespace MyFirstGame
     {
         public LoseScene()
         {
-            var helloText = new HelloText("Game Over!", 200, 100);
+            var helloText = new HelloText("Game Over!", 0, 100);
             helloText.Size = 30;
+            helloText.Position = new Vector2f(Game.Width / 2, 100);
             helloText.SetColor(Color.Red);
 
-            var restartText = new HelloText("Press R to restart", 300, 180);
+            var restartText = new RestartBtn("Click on this to restart", Game.Width / 2, 180);
             restartText.SetColor(Color.Magenta);
 
             AddToScene(helloText, restartText);
@@ -25,10 +27,20 @@ namespace MyFirstGame
                 case Keyboard.Key.Escape:
                     Game.Close();
                     break;
-                case Keyboard.Key.R:
-                    Game.SetCurrentScene(new MyScene());
-                    break;
             }
         }
+
+        private class RestartBtn : HelloText {
+            public RestartBtn(string text, float x, float y) : base(text, x, y) {}
+
+            public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
+            {
+                if (mouseButton == Mouse.Button.Left && HoverOnThis())
+                {
+                    Game.SetCurrentScene(new MyScene());
+                }
+            }
+        }
+
     }
 }

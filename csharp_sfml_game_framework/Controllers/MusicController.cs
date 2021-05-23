@@ -6,36 +6,36 @@ namespace csharp_sfml_game_framework
     public class MusicController
     {
         private string pathToMusic;
-        private Music music;
+        public Music Music { get; private set; }
         private bool isLoop;
 
         internal MusicController() {}
 
         public void PlayMusic(string pathToMusic)
         {
-            if (music == null || this.pathToMusic != pathToMusic)
+            if (Music == null || this.pathToMusic != pathToMusic)
             {
-                music = new Music(pathToMusic) { Loop = isLoop };
-                music.Play();
+                Music = new Music(pathToMusic) { Loop = isLoop };
+                Music.Play();
                 this.pathToMusic = pathToMusic;
             }
             else
             {
-                music.Play();
+                Music.Play();
             }
         }
 
         public void StopMusic()
         {
-            music?.Stop();
+            Music?.Stop();
         }
 
         public void LoopMusic(bool loop)
         {
             isLoop = loop;
-            if (music != null)
+            if (Music != null)
             {
-                music.Loop = isLoop;
+                Music.Loop = isLoop;
             }
         }
     }

@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SFML.Graphics;
+using SFML.System;
 
 namespace csharp_sfml_game_framework
 {
     internal class AnimationController
     {
-        private int delayFrames;
-        private int counter;
+        private float delayFrames;
         private List<Sprite> sprites = new List<Sprite>();
         private int currentIndexOfSprite;
+        private Clock clock = new Clock();
+        public bool Playing { get; private set; }
 
-        internal AnimationController(int delayFrames, params Texture[] textures)
+        internal AnimationController(float delayFrames, params Texture[] textures)
         {
             this.delayFrames = delayFrames;
             foreach (var texture in textures)
@@ -19,24 +22,40 @@ namespace csharp_sfml_game_framework
             }
         }
 
-        internal void SetDelay(int delay)
+        internal void SetDelay(float delay)
         {
             delayFrames = delay;
         }
 
-        public Sprite NextSprite()
+        internal Sprite NextSprite()
         {
-            if (counter == 0)
+            if (clock != null && clock.ElapsedTime.AsSeconds() > delayFrames)
             {
                 currentIndexOfSprite = (currentIndexOfSprite + 1) % sprites.Count;
-            }
-
-            if (delayFrames != 0)
-            {
-                counter = (counter + 1) % delayFrames;
+                clock.Restart();
             }
 
             return sprites[currentIndexOfSprite];
+        }
+
+        internal void PlayAnimation()
+        {
+            Playing = true;
+            if (clock == null)
+            {
+                clock = new Clock();
+            }
+        }
+
+        internal void StopAnimation()
+        {
+            Playing = false;
+            clock = null;
+        }
+
+        internal void RestartAnimaton()
+        {
+            currentIndexOfSprite = 0;
         }
     }
 }

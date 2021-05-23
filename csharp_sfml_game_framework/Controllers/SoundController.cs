@@ -4,28 +4,28 @@ namespace csharp_sfml_game_framework
 {
     public class SoundController
     {
-        private Sound sound;
+        public Sound Sound { get; private set; }
         private string pathToSound;
 
         internal SoundController() { }
 
         public void PlaySound(string pathToSound)
         {
-            if (sound == null || this.pathToSound != pathToSound)
+            if (Sound == null || this.pathToSound != pathToSound)
             {
-                sound = new Sound(new SoundBuffer(pathToSound));
-                sound.Play();
+                Sound = new Sound(new SoundBuffer(pathToSound));
+                Sound.Play();
                 this.pathToSound = pathToSound;
             }
             else
             {
-                sound.Play();
+                Sound.Play();
             }
         }
 
         public void StopSound()
         {
-            sound.Stop();
+            Sound?.Stop();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace MyFirstGame
         private float bottom;
         private float top;
         private bool isMoveDown;
+        private int speed = 3;
 
         public Enemy(float x, float y) : base(x, y, "Art/enemy.png")
         {
@@ -18,11 +19,11 @@ namespace MyFirstGame
         {
             if (isMoveDown)
             {
-                MoveIt(0, 6);
+                MoveIt(0, speed);
             }
             else
             {
-                MoveIt(0, -6);
+                MoveIt(0, -speed);
             }
 
             if (Y < top || Y > bottom)
