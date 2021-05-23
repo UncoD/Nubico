@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp_sfml_game_framework", "csharp_sfml_game_framework\csharp_sfml_game_framework.csproj", "{CE84E9F0-955B-4636-BD99-BEF44FAF905E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ungine", "csharp_sfml_game_framework\Ungine.csproj", "{CE84E9F0-955B-4636-BD99-BEF44FAF905E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders", "SpaceInvaders\SpaceInvaders.csproj", "{B3FAC042-0A52-482B-902D-11C3665DB29F}"
 EndProject

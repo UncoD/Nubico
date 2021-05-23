@@ -4,7 +4,7 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace csharp_sfml_game_framework
+namespace Ungine
 {
     public class Game
     {
@@ -18,6 +18,7 @@ namespace csharp_sfml_game_framework
             new Dictionary<Mouse.Button, (int, int, bool)>();
 
         public readonly MusicController MusicController;
+        public readonly SoundController SoundController;
         public int Score { get; set; }
 
         /// <summary>

@@ -2,8 +2,9 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
+using Ungine.Properties;
 
-namespace csharp_sfml_game_framework
+namespace Ungine
 {
     public class TextObject : GameObject
     {
@@ -25,7 +26,7 @@ namespace csharp_sfml_game_framework
         {
             Text = new Text
             {
-                Font = new Font(pathToFont),
+                Font = new Font(Resources.DefaultFont),
                 DisplayedString = text,
                 Position = new Vector2f(x, y),
                 CharacterSize = (uint) height

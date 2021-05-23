@@ -97,12 +97,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\csharp_sfml_game_framework\csharp_sfml_game_framework.csproj">
-      <Project>{ce84e9f0-955b-4636-bd99-bef44faf905e}</Project>
-      <Name>csharp_sfml_game_framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Art\73866909_p0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -205,6 +199,12 @@
     <Content Include="Music\fade - Inner Peace.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\csharp_sfml_game_framework\Ungine.csproj">
+      <Project>{ce84e9f0-955b-4636-bd99-bef44faf905e}</Project>
+      <Name>Ungine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

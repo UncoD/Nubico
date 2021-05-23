@@ -2,7 +2,7 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace csharp_sfml_game_framework
+namespace Ungine
 {
     public class GameObject : Transformable, Drawable, IOnKeyPressable, IOnMouseClickable
     {

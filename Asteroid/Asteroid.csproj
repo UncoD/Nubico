@@ -89,12 +89,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\csharp_sfml_game_framework\csharp_sfml_game_framework.csproj">
-      <Project>{ce84e9f0-955b-4636-bd99-bef44faf905e}</Project>
-      <Name>csharp_sfml_game_framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Art\116315.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -660,6 +654,12 @@
     <Content Include="Sound\Weapons\Single Shot Sounds\sfx_weapon_singleshot8.wav" />
     <Content Include="Sound\Weapons\Single Shot Sounds\sfx_weapon_singleshot9.wav" />
     <Content Include="Sound\win.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\csharp_sfml_game_framework\Ungine.csproj">
+      <Project>{ce84e9f0-955b-4636-bd99-bef44faf905e}</Project>
+      <Name>Ungine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

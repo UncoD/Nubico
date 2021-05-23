@@ -1,6 +1,5 @@
-﻿using csharp_sfml_game_framework;
-using SFML.Window;
-using System;
+﻿using SFML.Window;
+using Ungine;
 
 namespace MyFirstGame
 {

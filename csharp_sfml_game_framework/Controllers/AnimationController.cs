@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
 
-namespace csharp_sfml_game_framework
+namespace Ungine
 {
     internal class AnimationController
     {

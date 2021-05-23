@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using csharp_sfml_game_framework;
+using Ungine;
 using SFML.Graphics;
 
 namespace SpaceInvaders
@@ -9,7 +9,6 @@ namespace SpaceInvaders
     {
         public bool IsMoveLeft = true;
         public readonly bool IsHunter;
-        public bool IsBroken;
         private int Level { get; }
         
         public Invader(string pathToSprite, float x, float y, bool isHunter) : base(x, y, pathToSprite)
@@ -36,7 +35,6 @@ namespace SpaceInvaders
             {
                 Game.Score += 100 * GameScene.GameObjects.Count(o => o is Ball) * Level;
                 DeleteFromGame();
-                IsBroken = true;
                 SoundController.PlaySound("Sound/killinvader.wav");
             }
         }
@@ -46,7 +44,6 @@ namespace SpaceInvaders
             if (collideObject is Bunker)
             {
                 DeleteFromGame();
-                IsBroken = true;
             }
 
             if (collideObject is Player)

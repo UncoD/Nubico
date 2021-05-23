@@ -98,9 +98,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\csharp_sfml_game_framework\csharp_sfml_game_framework.csproj">
+    <ProjectReference Include="..\csharp_sfml_game_framework\Ungine.csproj">
       <Project>{ce84e9f0-955b-4636-bd99-bef44faf905e}</Project>
-      <Name>csharp_sfml_game_framework</Name>
+      <Name>Ungine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

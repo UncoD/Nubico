@@ -1,4 +1,4 @@
-namespace csharp_sfml_game_framework
+namespace Ungine
 {
     public interface IOnCollidable
     {

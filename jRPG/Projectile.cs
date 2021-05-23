@@ -1,4 +1,4 @@
-﻿using csharp_sfml_game_framework;
+﻿using Ungine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace jRPG
             this.yStart = yStart + dy;
             this.xFinish = xFinish;
             this.yFinish = yFinish + dy;
-            this.GameScene = gameScene;
+            Game.SetCurrentScene(gameScene);
             Position = new SFML.System.Vector2f(this.xStart, this.yStart);
             DrawPriority = 10;
             float coef = 0.5f;
