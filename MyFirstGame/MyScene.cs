@@ -9,6 +9,7 @@ namespace MyFirstGame
         private Mario mario;
         private Enemy enemy;
         private TextObject scoreText;
+        private int score = 0;
         public MyScene()
         {
             var helloText = new HelloText("Hello World!", 0, 50);
@@ -37,8 +38,8 @@ namespace MyFirstGame
         {
             if (mario.X <= enemy.X + 2 && mario.X >= enemy.X - 2)
             {
-                Game.Score++;
-                scoreText.SetText(Game.Score);
+                score++;
+                scoreText.SetText(score);
             }
 
         }

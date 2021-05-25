@@ -157,9 +157,6 @@ namespace Ungine
         {
             foreach (var item in objectsPreparedToAdd)
             {
-                // maybe depricated
-                //item.Game = Game;
-                //item.GameScene = this;
                 item.IsBroken = false;
                 GameObjects.Add(item);
 

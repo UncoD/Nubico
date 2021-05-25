@@ -58,7 +58,7 @@ namespace MyFirstGame
         {
             if (collideObject is Enemy)
             {
-                Game.OnLose();
+                Game.SetCurrentScene(new LoseScene());
             }
         }
 

@@ -71,7 +71,6 @@
     <Compile Include="Controllers\SpriteController.cs" />
     <Compile Include="GameBase\DependencyProvider.cs" />
     <Compile Include="Interfaces\IOnMouseClickable.cs" />
-    <Compile Include="Objects\BlinkingTextObject.cs" />
     <Compile Include="GameBase\GameScene.cs" />
     <Compile Include="GameBase\Game.cs" />
     <Compile Include="Interfaces\IOnCollidable.cs" />

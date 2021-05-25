@@ -1,4 +1,5 @@
-﻿using Ungine;
+﻿using System;
+using Ungine;
 
 namespace MyFirstGame
 {
@@ -6,11 +7,12 @@ namespace MyFirstGame
     {
         public MyFirstGame(int width, int height, string name) : base(width, height, name)
         {
+            DrawObjectBorders = false;
         }
 
-        public override void OnLose()
+        public void MyMethod()
         {
-            SetCurrentScene(new LoseScene());
+            Console.WriteLine("my game");
         }
     }
 

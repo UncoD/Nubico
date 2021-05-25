@@ -11,7 +11,7 @@ namespace Ungine
 
         internal MusicController() {}
 
-        public void PlayMusic(string pathToMusic)
+        public void Play(string pathToMusic)
         {
             if (Music == null || this.pathToMusic != pathToMusic)
             {
@@ -25,12 +25,11 @@ namespace Ungine
             }
         }
 
-        public void StopMusic()
-        {
-            Music?.Stop();
-        }
+        public void Stop() => Music?.Stop();
+        public void Pause() => Music?.Pause();
+        public void Continue() => Music?.Play();
 
-        public void LoopMusic(bool loop)
+        public void SetLoop(bool loop)
         {
             isLoop = loop;
             if (Music != null)

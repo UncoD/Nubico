@@ -19,7 +19,8 @@ namespace Ungine
 
         public readonly MusicController MusicController;
         public readonly SoundController SoundController;
-        public int Score { get; set; }
+
+        public bool DrawObjectBorders = false;
 
         /// <summary>
         /// 
@@ -50,7 +51,7 @@ namespace Ungine
             Window.MouseButtonReleased += (s, e) => ClickedMouseButtons.Remove(e.Button);
 
             MusicController = new MusicController();
-            MusicController.LoopMusic(true);
+            MusicController.SetLoop(true);
         }
         public int Width => (int)Window.Size.X;
         public int Height => (int)Window.Size.Y;
@@ -106,14 +107,6 @@ namespace Ungine
                     Window.Display();
                 }
             }
-        }
-
-        public virtual void OnLose()
-        {
-        }
-
-        public virtual void OnWin()
-        {
         }
     }
 }

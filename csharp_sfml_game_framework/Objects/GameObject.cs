@@ -56,16 +56,20 @@ namespace Ungine
         {
             SpriteController.TryDraw(target);
 
-            //var border = new RectangleShape(new Vector2f(Width, Height))
-            //{
-            //    OutlineColor = Color.Green,
-            //    FillColor = Color.Transparent,
-            //    OutlineThickness = 2,
-            //    Position = Position,
-            //    Origin = new Vector2f(Width / 2, Height / 2)
-            //};
+            if (Game.DrawObjectBorders)
+            {
+                var border = new RectangleShape(new Vector2f(Width, Height))
+                {
+                    OutlineColor = Color.Green,
+                    FillColor = Color.Transparent,
+                    OutlineThickness = 2,
+                    Position = Position,
+                    Origin = new Vector2f(Width / 2, Height / 2)
+                };
 
-            //target.Draw(border);
+                target.Draw(border);
+            }
+
         }
         
         public void MoveIt(float dx, float dy)
