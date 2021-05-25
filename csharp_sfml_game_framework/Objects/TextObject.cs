@@ -22,11 +22,11 @@ namespace Ungine
         public new float Width => Text.GetGlobalBounds().Width;
         public new float Height => Text.GetGlobalBounds().Height;
         
-        public TextObject(string text, float x, float y, int height = 15, string pathToFont = "Font/font.ttf") : base(x, y)
+        public TextObject(string text, float x, float y, int height = 15, string pathToFont = "") : base(x, y)
         {
             Text = new Text
             {
-                Font = new Font(Resources.DefaultFont),
+                Font = string.IsNullOrEmpty(pathToFont) ? new Font(Resources.DefaultFont) : new Font(pathToFont),
                 DisplayedString = text,
                 Position = new Vector2f(x, y),
                 CharacterSize = (uint) height
