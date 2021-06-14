@@ -1,4 +1,6 @@
-﻿using SFML.Window;
+﻿using SFML.System;
+using SFML.Window;
+using System;
 using Ungine;
 
 namespace MyFirstGame
@@ -7,10 +9,9 @@ namespace MyFirstGame
     {
         private bool isMoveLeft;
         private bool isMoving;
+        private int speedX = 5, speedY = 0;
         public Mario(float x, float y) : base(x, y, "Art/Player/player_0.png")
         {
-            SpeedX = 5;
-            SpeedY = 0;
             AddAnimation("walk", 0.1f,
                 "Art/Player/player_0.png",
                 "Art/Player/player_1.png",
@@ -34,7 +35,7 @@ namespace MyFirstGame
                         isMoveLeft = true;
                         FlipX();
                     }
-                    MoveIt(-SpeedX, SpeedY);
+                    Velocity = new Vector2f(-speedX, speedY);
                     isMoving = true;
                     break;
                 case Keyboard.Key.D:
@@ -48,7 +49,7 @@ namespace MyFirstGame
                         isMoveLeft = false;
                         FlipX();
                     }
-                    MoveIt(SpeedX, SpeedY);
+                    Velocity = new Vector2f(speedX, speedY);
                     isMoving = true;
                     break;
             }
@@ -64,15 +65,23 @@ namespace MyFirstGame
 
         public override void OnEachFrame()
         {
-            if (!isMoving)
-            {
-                StopAnimation(true);
-            } else if (CurrentAnimationName() != "walk")
-            {
-                PlayAnimation("walk");
-            }
+            //if (!isMoving)
+            //{
+            //    StopAnimation(true);
+            //} else if (CurrentAnimationName != "walk")
+            //{
+            //    PlayAnimation("walk");
+            //}
 
-            isMoving = false;
+            //isMoving = false;
+            Velocity = new Vector2f(0, 0);
+
+            // Rotation += 15;
+        }
+
+        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
+        {
+            Console.WriteLine(position);
         }
     }
 }

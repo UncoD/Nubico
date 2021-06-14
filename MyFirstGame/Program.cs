@@ -7,7 +7,7 @@ namespace MyFirstGame
     {
         public MyFirstGame(int width, int height, string name) : base(width, height, name)
         {
-            DrawObjectBorders = false;
+            DrawObjectBorders = true;
         }
 
         public void MyMethod()
@@ -21,7 +21,7 @@ namespace MyFirstGame
         static void Main(string[] args)
         {
             var myGame = new MyFirstGame(500, 400, "My Game");
-            myGame.SetCurrentScene(new MyScene());
+            myGame.SetCurrentScene(new MyScene(5));
             myGame.Start();
         }
     }

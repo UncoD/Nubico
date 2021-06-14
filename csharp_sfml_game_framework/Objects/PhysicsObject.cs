@@ -1,31 +1,65 @@
 using SFML.Graphics;
-using SFML.System;
+using System;
 
 namespace Ungine
 {
+    /// <summary>
+    /// Объект, который проверяется на столкновение с объектами этого же класса
+    /// </summary>
     public class PhysicsObject : GameObject, IOnCollidable
     {
-        protected CollideType collideType;
+        /// <summary>
+        /// <br>Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения</br>
+        /// <br>Изменяется при столкновении объектов</br>
+        /// </summary>
+        protected CollideType collideType = CollideType.None;
         
+        /// <summary>
+        /// Конуструктор физического объекта, содержащего графическое представление
+        /// </summary>
+        /// <param name="x">Горизонтальная позиция</param>
+        /// <param name="y">Вертикальная позиция</param>
+        /// <param name="pathToSprite">Путь к файлу изображения (.png, .jpg)</param>
         public PhysicsObject(float x, float y, string pathToSprite) : base(x, y, pathToSprite) {}
+
+        /// <summary>
+        /// Конструктор физичекого объекта без начального графического представления
+        /// </summary>
+        /// <param name="x">Горизонтальная позиция</param>
+        /// <param name="y">Вертикальная позиция</param>
         public PhysicsObject(float x, float y) : base(x, y) {}
 
+        /// <summary>
+        /// Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения
+        /// </summary>
         protected enum CollideType
         {
+            /// <summary>
+            /// Вертикальное столкновение - объекты столкнулись боковыми сторонами
+            /// </summary>
             Vertical,
+            /// <summary>
+            /// Горизонтальное столкновение - объекты столкнулись верхней и нижней сторонами
+            /// </summary>
             Horizontal,
+            /// <summary>
+            /// Столкновения не произошло
+            /// </summary>
             None
         }
 
+        /// <summary>
+        /// <br>Проверка на столкновение с другим физическим объектом</br>
+        /// <br>Сохраняет тип столкновения (collideType): горизонтальное, вертикальное, не было столкновения</br>
+        /// </summary>
+        /// <param name="other">Физический объект, с которым осуществляется проверка</param>
+        /// <returns>Столкноулись ли объекты</returns>
         public bool IsIntersects(PhysicsObject other)
         {
-            collideType = CollideType.None;
-            other.collideType = collideType;
-
-            var thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + SpeedX, Y - Height / 2, Width, Height);
+            var thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + Velocity.X, Y - Height / 2, Width, Height);
             var otherBoundsOnNextFrame = new FloatRect
             (
-                other.X - other.Width / 2 + other.SpeedX,
+                other.X - other.Width / 2 + other.Velocity.X,
                 other.Y - other.Height / 2,
                 other.Width, other.Height
             );
@@ -37,11 +71,11 @@ namespace Ungine
                 return true;
             }
 
-            thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + SpeedX, Y - Height / 2 + SpeedY, Width, Height);
+            thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + Velocity.X, Y - Height / 2 + Velocity.Y, Width, Height);
             otherBoundsOnNextFrame = new FloatRect
             (
-                other.X - other.Width / 2 + other.SpeedX,
-                other.Y - other.Height / 2 + other.SpeedY,
+                other.X - other.Width / 2 + other.Velocity.X,
+                other.Y - other.Height / 2 + other.Velocity.Y,
                 other.Width, other.Height
             );
             
@@ -56,5 +90,10 @@ namespace Ungine
         }
 
         public virtual void OnCollide(GameObject collideObject) { }
+
+        internal void ClearCollide()
+        {
+            collideType = CollideType.None;
+        }
     }
 }

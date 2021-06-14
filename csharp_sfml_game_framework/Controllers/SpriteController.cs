@@ -6,6 +6,10 @@ using SFML.System;
 
 namespace Ungine
 {
+    /// <summary>
+    /// <br>Контроллер спрайтов</br>
+    /// <br>Управление отображением игрового объекта</br>
+    /// </summary>
     internal class SpriteController
     {
         internal Sprite CurrentSprite { get; private set; }
@@ -53,16 +57,34 @@ namespace Ungine
             return texture;
         }
 
-        public void AddAnimation(string animationName, float frequency, params string[] pathsToTextures)
+        /// <summary>
+        /// Добавить анимацию объекту
+        /// </summary>
+        /// <param name="animationName">Название анимации</param>
+        /// <param name="delay">Задержка между кадрами анимации в секундах</param>
+        /// <param name="pathsToTextures">Пути к файлам кадров (.png, .jpg) анимации через запятую</param>
+        public void AddAnimation(string animationName, float delay, params string[] pathsToTextures)
         {
             if (!animations.ContainsKey(animationName))
             {
                 animations.Add(animationName,
-                    new AnimationController(frequency, pathsToTextures.Select(CheckTexture).ToArray()));
+                    new AnimationController(delay, pathsToTextures.Select(CheckTexture).ToArray()));
             }
             else
             {
                 throw new ArgumentException("Анимация с таким именем уже существует");
+            }
+        }
+
+        /// <summary>
+        /// Удалить анимацию по названию
+        /// </summary>
+        /// <param name="animationName">Название удаляемой анимации</param>
+        public void RemoveAnimation(string animationName)
+        {
+            if (animations.ContainsKey(animationName))
+            {
+                animations.Remove(animationName);
             }
         }
 
@@ -74,24 +96,35 @@ namespace Ungine
             }
         }
 
+        /// <summary>
+        /// Возвращает название текущей проигрываемой анимации
+        /// </summary>
+        /// <returns>Название проигрываемой анимации</returns>
         public string CurrentAnimationName()
         {
             return animations.ContainsKey(currentAnimation) && animations[currentAnimation].Playing ? currentAnimation : "";
         }
 
-        public void PlayAnimation(string animationName, bool restart = false)
+        /// <summary>
+        /// Запустить анимацию по имени, если она была добавлена в объект
+        /// </summary>
+        /// <param name="animationName">Название запускаемой анимации</param>
+        /// <param name="restart">Перезапустить анимацию с первого кадра</param>
+        public void PlayAnimation(string animationName, bool restart = false, object parent = null)
         {
             if (!animations.ContainsKey(animationName))
             {
-                throw new ArgumentException("Анимация с таким именем не найдена");
+                throw new ArgumentException($"Анимация с именем {animationName} не найдена в объекте {parent.GetType()}");
             }
 
 
-            if (animations.ContainsKey(currentAnimation))
+            if (animations.ContainsKey(currentAnimation) && currentAnimation != animationName)
             {
                 animations[currentAnimation].StopAnimation();
             }
+            
             currentAnimation = animationName;
+
             if (restart)
             {
                 animations[currentAnimation].RestartAnimaton();
@@ -99,6 +132,10 @@ namespace Ungine
             animations[currentAnimation].PlayAnimation();
         }
 
+        /// <summary>
+        /// Остановить проигрывание анимации
+        /// </summary>
+        /// <param name="withRestart">Сбросить анимацию к первому кадру</param>
         public void StopAnimation(bool withRestart = false)
         {
             if (animations.ContainsKey(currentAnimation))
@@ -106,12 +143,17 @@ namespace Ungine
                 if (withRestart)
                 {
                     animations[currentAnimation].RestartAnimaton();
-                    CurrentSprite = animations[currentAnimation].NextSprite();
                 }
+                CurrentSprite = animations[currentAnimation].NextSprite();
                 animations[currentAnimation].StopAnimation();
             }
         }
 
+        /// <summary>
+        /// Установить частоту обновления кадров для конкретной анимаии
+        /// </summary>
+        /// <param name="animationName">Название добавленной анимации</param>
+        /// <param name="delay">Задержка между кадрами в секундах</param>
         public void SetAnimationDelay(string animationName, float delay)
         {
             if (animations.ContainsKey(currentAnimation))
@@ -131,6 +173,10 @@ namespace Ungine
             }
         }
 
+        /// <summary>
+        /// Получить ширину спрайта
+        /// </summary>
+        /// <returns>Ширина спрайта</returns>
         public float GetWidth()
         {
             if (CurrentSprite != null)
@@ -138,6 +184,10 @@ namespace Ungine
             return 0;
         }
 
+        /// <summary>
+        /// Получить высоту спрайта
+        /// </summary>
+        /// <returns>Высота спрайта</returns>
         public float GetHeight()
         {
             if (CurrentSprite != null)
@@ -145,11 +195,21 @@ namespace Ungine
             return 0;
         }
 
+        /// <summary>
+        /// <br>Получить границы спрайта</br>
+        /// <br>Соответствуют границам текущей текстуры спрайта</br>
+        /// <br>Содержит координаты верхнего левого угла относительно окна приложения</br>
+        /// </summary>
+        /// <returns>Прямоугольник, обозначающий границы спрайта</returns>
         public FloatRect GetBounds()
         {
             return CurrentSprite.GetGlobalBounds();
         }
 
+        /// <summary>
+        /// Установить цвет поверх тектсуры спрайта
+        /// </summary>
+        /// <param name="color">Устанавливаемый цвет</param>
         public void SetColor(Color color)
         {
             if (CurrentSprite != null)

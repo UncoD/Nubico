@@ -37,7 +37,7 @@ namespace MyFirstGame
             {
                 if (mouseButton == Mouse.Button.Left && HoverOnThis())
                 {
-                    Game.SetCurrentScene(new MyScene());
+                    Game.SetCurrentScene(new MyScene(5));
                 }
             }
         }

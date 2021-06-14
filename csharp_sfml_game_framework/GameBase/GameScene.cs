@@ -6,21 +6,37 @@ using SFML.Window;
 namespace Ungine
 {
     /// <summary>
-    /// Игровая сцена, часть игры. Управляет объектами, отображает их на экране. Может запускать музыку и реагировать на нажатия.
+    /// <br>Игровая сцена, часть игры. Управляет объектами, отображает их на экране</br>
+    /// <br>Может запускать музыку и реагировать на ввод с клавиатуры и мыши</br>
     /// </summary>
     public class GameScene : IOnKeyPressable, IOnMouseClickable
     {
+        /// <summary>
+        /// Текущая игра, которой принадлежит сцена
+        /// </summary>
         public readonly Game Game = GameProvider.ProvideDependency();
 
-        // Списки объектов
+        /// <summary>
+        /// Контроллер звуков
+        /// </summary>
         public readonly SoundController SoundController = new SoundController();
+        /// <summary>
+        /// Контроллер музыки - общий для всей игры
+        /// </summary>
         public readonly MusicController MusicController;
+
+        /// <summary>
+        /// Список всех игровых объектов на сцене на текущем кадре
+        /// </summary>
         public List<GameObject> GameObjects { get; private set; }
         private readonly List<GameObject> objectsPreparedToRemove = new List<GameObject>();
         private readonly List<GameObject> objectsPreparedToAdd = new List<GameObject>();
         private readonly List<IOnCollidable> collidables = new List<IOnCollidable>();
 
-        /// <param name="game">Игровая сцена должна знать об игре, в которой она находится.</param>
+        /// <summary>
+        /// <br>Конструктор игровой сцены</br>
+        /// <br>Можно инициализировать игровые объекты и добавлять их на создаваемую сцену</br>
+        /// </summary>
         public GameScene()
         {
             CurrentSceneProvider.SetDependency(this);
@@ -50,6 +66,8 @@ namespace Ungine
             UpdateObjects();
 
             OnEachFrame();
+
+            ClearIntersections();
         }
         
         private void UpdateObjects()
@@ -122,6 +140,17 @@ namespace Ungine
             }
         }
 
+        private void ClearIntersections()
+        {
+            for (var i = 0; i < collidables.Count; i++)
+            {
+                if (collidables[i] is PhysicsObject obj)
+                {
+                    obj.ClearCollide();
+                }
+            }
+        }
+
         internal void DeleteFromScene(GameObject gameObject)
         {
             objectsPreparedToRemove.Add(gameObject);
@@ -129,8 +158,8 @@ namespace Ungine
         }
 
         /// <summary>
-        /// Добавить объект(ы) в игровую сцену, чтобы отразить на экране и начать с ним(и) работу.
-        /// Можно перечислить несколько объектов через запятую.
+        /// <br>Добавить объект(ы) в игровую сцену, чтобы отразить на экране</br>
+        /// <br>Можно перечислить несколько объектов через запятую</br>
         /// </summary>
         /// <param name="gameObjects"></param>
         public void AddToScene(params GameObject[] gameObjects)
@@ -171,6 +200,9 @@ namespace Ungine
             objectsPreparedToAdd.Clear();
         }
 
+        /// <summary>
+        /// Вызывается на каждом кадре, содержит описание логики обновления сцены во время работы приложения
+        /// </summary>
         public virtual void OnEachFrame() { }
         public virtual void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed) { }
         public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked) { }

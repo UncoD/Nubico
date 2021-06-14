@@ -10,7 +10,7 @@ namespace MyFirstGame
         private Enemy enemy;
         private TextObject scoreText;
         private int score = 0;
-        public MyScene()
+        public MyScene(int text)
         {
             var helloText = new HelloText("Hello World!", 0, 50);
             helloText.Size = 30;

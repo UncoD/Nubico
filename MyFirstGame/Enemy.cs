@@ -1,4 +1,6 @@
-﻿using Ungine;
+﻿using SFML.System;
+using System;
+using Ungine;
 
 namespace MyFirstGame
 {
@@ -19,16 +21,21 @@ namespace MyFirstGame
         {
             if (isMoveDown)
             {
-                MoveIt(0, speed);
+                Velocity = new Vector2f(0, speed);
+
+                if (Y > bottom)
+                {
+                    isMoveDown = false;
+                }
             }
             else
             {
-                MoveIt(0, -speed);
-            }
+                Velocity = new Vector2f(0, -speed);
 
-            if (Y < top || Y > bottom)
-            {
-                isMoveDown = !isMoveDown;
+                if (Y < top)
+                {
+                    isMoveDown = true;
+                }
             }
         }
     }
