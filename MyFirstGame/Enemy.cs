@@ -13,9 +13,9 @@ namespace MyFirstGame
         public Enemy(float x, float y) : base(x, y, "Art/enemy.png")
         {
             bottom = y;
-            top = y - 120;
+            top = y - 150;
+            Origin = new Vector2f(Width / 2, Height / 2);
             Scale = new Vector2f(3, 3);
-            Origin = new Vector2f(0, 0);
         }
 
         public override void OnEachFrame()

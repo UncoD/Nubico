@@ -53,7 +53,7 @@ namespace Ungine
         /// <br>Сохраняет тип столкновения (collideType): горизонтальное, вертикальное, не было столкновения</br>
         /// </summary>
         /// <param name="other">Физический объект, с которым осуществляется проверка</param>
-        /// <returns>Столкноулись ли объекты</returns>
+        /// <returns>Столкнулись ли объекты</returns>
         public bool IsIntersects(PhysicsObject other)
         {
             var thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + Velocity.X, Y - Height / 2, Width, Height);

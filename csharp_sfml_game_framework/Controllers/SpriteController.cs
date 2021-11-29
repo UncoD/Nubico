@@ -167,8 +167,8 @@ namespace Ungine
             if (CurrentSprite != null)
             {
                 CurrentSprite.Rotation = owner.Rotation;
-                CurrentSprite.Scale = owner.Scale;
                 CurrentSprite.Origin = owner.Origin;
+                CurrentSprite.Scale = owner.Scale;
                 CurrentSprite.Position = owner.Position;
             }
         }

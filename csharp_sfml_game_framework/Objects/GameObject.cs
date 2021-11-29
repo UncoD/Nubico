@@ -118,8 +118,8 @@ namespace Ungine
                     OutlineColor = Color.Green,
                     FillColor = Color.Transparent,
                     OutlineThickness = 2,
-                    Position = Position,
-                    Origin = Origin
+                    Origin = new Vector2f(Width / 2, Height / 2),
+                    Position = Position
                 };
 
                 target.Draw(border);

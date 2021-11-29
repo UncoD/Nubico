@@ -18,7 +18,7 @@ namespace MyFirstGame
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
-            mario = new Mario(50, 205);
+            mario = new Mario(50, 230);
             AddToScene(mario);
 
             enemy = new Enemy(Game.Width / 2, 242);
@@ -41,7 +41,6 @@ namespace MyFirstGame
                 score++;
                 scoreText.SetText(score);
             }
-
         }
     }
 }

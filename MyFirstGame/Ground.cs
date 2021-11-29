@@ -8,7 +8,7 @@ namespace MyFirstGame
         public Ground(float x, float y) : base(x, y, "Art/ground.png")
         {
             Scale = new Vector2f(3, 3);
-            Origin = new Vector2f(0, 0);
+            Origin = new Vector2f(Width / 2, Height / 2);
         }
     }
 }
