@@ -1,5 +1,4 @@
 ﻿using SFML.System;
-using System;
 using Ungine;
 
 namespace MyFirstGame
@@ -15,6 +14,8 @@ namespace MyFirstGame
         {
             bottom = y;
             top = y - 120;
+            Scale = new Vector2f(3, 3);
+            Origin = new Vector2f(0, 0);
         }
 
         public override void OnEachFrame()

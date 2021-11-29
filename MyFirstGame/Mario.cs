@@ -18,6 +18,8 @@ namespace MyFirstGame
                 "Art/Player/player_2.png",
                 "Art/Player/player_3.png"
             );
+            Scale = new Vector2f(3, 3);
+            Origin = new Vector2f(0, 0);
         }
 
         public override void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed)
@@ -65,18 +67,17 @@ namespace MyFirstGame
 
         public override void OnEachFrame()
         {
-            //if (!isMoving)
-            //{
-            //    StopAnimation(true);
-            //} else if (CurrentAnimationName != "walk")
-            //{
-            //    PlayAnimation("walk");
-            //}
+            if (!isMoving)
+            {
+                StopAnimation(true);
+            }
+            else if (CurrentAnimationName != "walk")
+            {
+                PlayAnimation("walk");
+            }
 
-            //isMoving = false;
+            isMoving = false;
             Velocity = new Vector2f(0, 0);
-
-            // Rotation += 15;
         }
 
         public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
