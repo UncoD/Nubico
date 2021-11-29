@@ -77,6 +77,8 @@ namespace Ungine
             SpriteController = new SpriteController();
             MusicController = Game.MusicController;
             Position = new Vector2f(x, y);
+
+            // TODO: getter setter for Scale (change Origin).
         }
 
         /// <summary>
