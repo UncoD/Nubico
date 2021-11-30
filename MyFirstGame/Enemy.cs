@@ -1,4 +1,5 @@
-﻿using Ungine;
+﻿using SFML.System;
+using Nubico.Objects;
 
 namespace MyFirstGame
 {
@@ -12,23 +13,29 @@ namespace MyFirstGame
         public Enemy(float x, float y) : base(x, y, "Art/enemy.png")
         {
             bottom = y;
-            top = y - 120;
+            top = y - 150;
+            Scale = new Vector2f(3, 3);
         }
 
         public override void OnEachFrame()
         {
             if (isMoveDown)
             {
-                MoveIt(0, speed);
+                Velocity = new Vector2f(0, speed);
+
+                if (Y > bottom)
+                {
+                    isMoveDown = false;
+                }
             }
             else
             {
-                MoveIt(0, -speed);
-            }
+                Velocity = new Vector2f(0, -speed);
 
-            if (Y < top || Y > bottom)
-            {
-                isMoveDown = !isMoveDown;
+                if (Y < top)
+                {
+                    isMoveDown = true;
+                }
             }
         }
     }

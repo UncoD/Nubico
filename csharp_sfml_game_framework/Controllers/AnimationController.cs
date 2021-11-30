@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
 
-namespace Ungine
+namespace Nubico.Controllers
 {
     internal class AnimationController
     {

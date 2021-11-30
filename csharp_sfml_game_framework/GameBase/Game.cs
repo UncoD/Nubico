@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using System.Threading;
+using Nubico.Controllers;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace Ungine
+namespace Nubico.GameBase
 {
+    /// <summary>
+    /// Базовый класс игры
+    /// </summary>
     public class Game
     {
         private GameScene currentScene;
@@ -13,24 +17,40 @@ namespace Ungine
 
         internal readonly RenderWindow Window;
 
+        /// <summary>
+        /// Список нажатых клавиш на текущем кадре
+        /// </summary>
         public readonly Dictionary<Keyboard.Key, bool> PressedKeys = new Dictionary<Keyboard.Key, bool>();
+        /// <summary>
+        /// Список нажатых кнопок мыши на текущем кадре
+        /// </summary>
         public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClicked)> ClickedMouseButtons =
             new Dictionary<Mouse.Button, (int, int, bool)>();
 
+        /// <summary>
+        /// Контроллер музыки - общий для всего игрового приложения
+        /// </summary>
         public readonly MusicController MusicController;
+        /// <summary>
+        /// Контроллер звуков
+        /// </summary>
         public readonly SoundController SoundController;
-        public int Score { get; set; }
 
         /// <summary>
-        /// 
+        /// Рисовать ли границы игровых объектов (зеленый прямоугольник вокруг объектов)
         /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="name"></param>
+        public bool DrawObjectBorders = false;
+
+        /// <summary>
+        /// Конструктор, для создания объекта Игра (инициализация окна приложения)
+        /// </summary>
+        /// <param name="width">Ширина окна приложения</param>
+        /// <param name="height">Высота окна приложения</param>
+        /// <param name="name">Заголовок окна приложения</param>
         /// <param name="style">
-        /// По умолчанию активна кнопка скрытия окна, нельзя изменять размер
-        /// Styles.Fullscreen - полноэкранный режим
-        /// Styles.Default - можно закрывать/сворачивать окно, изменять раземер
+        /// <br>По умолчанию активна кнопка скрытия окна, нельзя изменять размер</br>
+        /// <br>Styles.Fullscreen - полноэкранный режим</br>
+        /// <br>Styles.Default - можно закрывать/сворачивать окно, изменять раземер</br>
         /// </param>
 
         public Game(int width, int height, string name, Styles style = Styles.Close)
@@ -50,19 +70,36 @@ namespace Ungine
             Window.MouseButtonReleased += (s, e) => ClickedMouseButtons.Remove(e.Button);
 
             MusicController = new MusicController();
-            MusicController.LoopMusic(true);
+            MusicController.SetLoop(true);
         }
-        public int Width => (int)Window.Size.X;
-        public int Height => (int)Window.Size.Y;
 
-        //public Vector2f CursorPosition => Window.MapPixelToCoords(Mouse.GetPosition());
+        /// <summary>
+        /// Ширина окна приложения
+        /// </summary>
+        public int Width => (int)Window.Size.X;
+        /// <summary>
+        /// Высота окна приложения
+        /// </summary>
+        public int Height => (int)Window.Size.Y;
+        /// <summary>
+        /// Текущая позиция курсора мыши в окне приложения
+        /// </summary>
         public Vector2f CursorPosition => (Vector2f)Mouse.GetPosition(Window);
 
+        /// <summary>
+        /// Установить заголовок окна приложения
+        /// </summary>
+        /// <param name="title">Устанавливаемый заголовок окна</param>
         public void SetWindowTitle(string title)
         {
             Window.SetTitle(title);
         }
 
+        /// <summary>
+        /// Установка размеров окна приложения
+        /// </summary>
+        /// <param name="width">Устанавливаемая ширина окна</param>
+        /// <param name="height">Устанавливаемая высота окна</param>
         public void SetWindowSize(int width, int height)
         {
             Window.Position = new Vector2i(
@@ -72,9 +109,9 @@ namespace Ungine
         }
 
         /// <summary>
-        ///     Переключиться на другую сцену. Предыдущая сцена удалится вместе со всеми объектами.
+        /// Переключиться на другую сцену. Предыдущая сцена удалится вместе со всеми объектами.
         /// </summary>
-        /// <param name="gameScene"></param>
+        /// <param name="gameScene">Ссылка на запускаемую игровую сцену</param>
         public void SetCurrentScene(GameScene gameScene)
         {
             currentScene = gameScene;
@@ -84,16 +121,21 @@ namespace Ungine
             PressedKeys.Clear();
         }
 
+        /// <summary>
+        /// Закрыть окно приложения
+        /// </summary>
         public void Close()
         {
             Window.Close();
         }
 
+        /// <summary>
+        /// Запустить игровой цикл
+        /// </summary>
         public void Start()
         {
             while (Window.IsOpen)
             {
-
                 if (clock.ElapsedTime.AsSeconds() > 0.0004)
                 {
                     Window.DispatchEvents();
@@ -106,14 +148,6 @@ namespace Ungine
                     Window.Display();
                 }
             }
-        }
-
-        public virtual void OnLose()
-        {
-        }
-
-        public virtual void OnWin()
-        {
         }
     }
 }

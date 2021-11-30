@@ -1,4 +1,5 @@
-﻿using Ungine;
+﻿using System;
+using Nubico.GameBase;
 
 namespace MyFirstGame
 {
@@ -6,11 +7,12 @@ namespace MyFirstGame
     {
         public MyFirstGame(int width, int height, string name) : base(width, height, name)
         {
+            DrawObjectBorders = true;
         }
 
-        public override void OnLose()
+        public void MyMethod()
         {
-            SetCurrentScene(new LoseScene());
+            Console.WriteLine("my game");
         }
     }
 
@@ -19,7 +21,7 @@ namespace MyFirstGame
         static void Main(string[] args)
         {
             var myGame = new MyFirstGame(500, 400, "My Game");
-            myGame.SetCurrentScene(new MyScene());
+            myGame.SetCurrentScene(new MyScene(5));
             myGame.Start();
         }
     }

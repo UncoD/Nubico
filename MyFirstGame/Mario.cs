@@ -1,5 +1,7 @@
-﻿using SFML.Window;
-using Ungine;
+﻿using SFML.System;
+using SFML.Window;
+using System;
+using Nubico.Objects;
 
 namespace MyFirstGame
 {
@@ -7,16 +9,16 @@ namespace MyFirstGame
     {
         private bool isMoveLeft;
         private bool isMoving;
+        private int speedX = 5, speedY = 0;
         public Mario(float x, float y) : base(x, y, "Art/Player/player_0.png")
         {
-            SpeedX = 5;
-            SpeedY = 0;
             AddAnimation("walk", 0.1f,
                 "Art/Player/player_0.png",
                 "Art/Player/player_1.png",
                 "Art/Player/player_2.png",
                 "Art/Player/player_3.png"
             );
+            Scale = new Vector2f(3, 3);
         }
 
         public override void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed)
@@ -34,7 +36,7 @@ namespace MyFirstGame
                         isMoveLeft = true;
                         FlipX();
                     }
-                    MoveIt(-SpeedX, SpeedY);
+                    Velocity = new Vector2f(-speedX, speedY);
                     isMoving = true;
                     break;
                 case Keyboard.Key.D:
@@ -48,7 +50,7 @@ namespace MyFirstGame
                         isMoveLeft = false;
                         FlipX();
                     }
-                    MoveIt(SpeedX, SpeedY);
+                    Velocity = new Vector2f(speedX, speedY);
                     isMoving = true;
                     break;
             }
@@ -58,7 +60,7 @@ namespace MyFirstGame
         {
             if (collideObject is Enemy)
             {
-                Game.OnLose();
+                Game.SetCurrentScene(new LoseScene());
             }
         }
 
@@ -67,12 +69,23 @@ namespace MyFirstGame
             if (!isMoving)
             {
                 StopAnimation(true);
-            } else if (CurrentAnimationName() != "walk")
+            }
+            else if (CurrentAnimationName != "walk")
             {
                 PlayAnimation("walk");
             }
 
             isMoving = false;
+            Velocity = new Vector2f(0, 0);
+        }
+
+        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
+        {
+            // Проверяет, что кликнули по Марио один раз
+            if (HoverOnThis() && !IsAlreadyClicked)
+            {
+                Console.WriteLine(position);
+            } 
         }
     }
 }

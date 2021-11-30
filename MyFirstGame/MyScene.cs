@@ -1,4 +1,5 @@
-﻿using Ungine;
+﻿using Nubico.GameBase;
+using Nubico.Objects;
 using SFML.Graphics;
 using SFML.System;
 
@@ -9,7 +10,8 @@ namespace MyFirstGame
         private Mario mario;
         private Enemy enemy;
         private TextObject scoreText;
-        public MyScene()
+        private int score = 0;
+        public MyScene(int text)
         {
             var helloText = new HelloText("Hello World!", 0, 50);
             helloText.Size = 30;
@@ -17,7 +19,7 @@ namespace MyFirstGame
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
-            mario = new Mario(50, 238);
+            mario = new Mario(50, 230);
             AddToScene(mario);
 
             enemy = new Enemy(Game.Width / 2, 242);
@@ -37,10 +39,9 @@ namespace MyFirstGame
         {
             if (mario.X <= enemy.X + 2 && mario.X >= enemy.X - 2)
             {
-                Game.Score++;
-                scoreText.SetText(Game.Score);
+                score++;
+                scoreText.SetText(score);
             }
-
         }
     }
 }
