@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Ungine")]
+[assembly: AssemblyTitle("Nubico")]
 [assembly: AssemblyDescription("A framework for game development")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("UDev")]
-[assembly: AssemblyProduct("Ungine")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyProduct("Nubico")]
+[assembly: AssemblyCopyright("Copyright © 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

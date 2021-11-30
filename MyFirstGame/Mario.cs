@@ -1,7 +1,7 @@
 ﻿using SFML.System;
 using SFML.Window;
 using System;
-using Ungine;
+using Nubico.Objects;
 
 namespace MyFirstGame
 {
@@ -19,7 +19,6 @@ namespace MyFirstGame
                 "Art/Player/player_3.png"
             );
             Scale = new Vector2f(3, 3);
-            Origin = new Vector2f(0, 0);
         }
 
         public override void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed)

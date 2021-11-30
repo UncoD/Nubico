@@ -1,4 +1,6 @@
-namespace Ungine
+using Nubico.Objects;
+
+namespace Nubico.Interfaces
 {
     /// <summary>
     /// Интерфейс, используемый для обозначения объектов, которые могут сталкиваться между собой

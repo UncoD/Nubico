@@ -1,9 +1,12 @@
+using Nubico.Controllers;
+using Nubico.GameBase;
+using Nubico.Interfaces;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
 
-namespace Ungine
+namespace Nubico.Objects
 {
     /// <summary>
     /// Класс базового игрового объекта, отвечает за отображения и поведение, реагирует на ввод с клавиатуры и мыши
@@ -221,8 +224,22 @@ namespace Ungine
         /// Вызывается на каждом кадре, содержит описание логики обновления объекта во время работы приложения
         /// </summary>
         public virtual void OnEachFrame() { }
+
+        /// <summary>
+        /// Вызывается при нажатии клавиши клавиатуры
+        /// </summary>
+        /// <param name="pressedKey">Нажатая клавиша</param>
+        /// <param name="isAlreadyPressed">Была ли нажата клавиша на предыдущем кадре (определение удержания клавиши)</param>
         public virtual void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed) { }
-        public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked) { }
+
+        /// <summary>
+        /// <br>Вызывается при любом нажатии мыши, даже мимо обеъкта</br>
+        /// <br>Для проверки нажатия на объект использовать успловие HoverOnThis()</br>
+        /// </summary>
+        /// <param name="mouseButton">Нажатая кнопка</param>
+        /// <param name="position">Позиция указателя в момент клика</param>
+        /// <param name="isAlreadyClicked">Была ли нажата кнопка на предыдущем кадре (определение зажатия)</param>
+        public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClicked) { }
         /// <summary>
         /// Вызывается перед удалением объекта со сцены
         /// </summary>

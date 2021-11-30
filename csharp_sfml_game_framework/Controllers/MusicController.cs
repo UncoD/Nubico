@@ -1,6 +1,6 @@
 ﻿using SFML.Audio;
 
-namespace Ungine
+namespace Nubico.Controllers
 {
     /// <summary>
     /// <br>Контроллер музыки - общий для всей игры</br>

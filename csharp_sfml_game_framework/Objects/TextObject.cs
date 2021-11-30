@@ -2,9 +2,9 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
-using Ungine.Properties;
+using Nubico.Properties;
 
-namespace Ungine
+namespace Nubico.Objects
 {
     /// <summary>
     /// Представляет текстовую надпись в игровом приложении
@@ -110,6 +110,12 @@ namespace Ungine
             OnEachFrame();
         }
 
+        /// <summary>
+        /// <br>Отображает игровой объект в окне приложения</br>
+        /// <br>Если Game.DrawObjectBorders = true, отображает границы объекта</br>
+        /// </summary>
+        /// <param name="target">Цель отрисовки (окно приложения)</param>
+        /// <param name="states">Параметры трансформации при отображениии</param>
         public override void Draw(RenderTarget target, RenderStates states)
         {
             states.Transform *= Transform;

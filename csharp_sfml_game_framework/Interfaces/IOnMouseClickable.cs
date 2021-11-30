@@ -1,7 +1,7 @@
 ﻿using SFML.System;
 using SFML.Window;
 
-namespace Ungine
+namespace Nubico.Interfaces
 {
     /// <summary>
     /// Используется для обозначения объектов (и сцен), которые могут реагировать на ввод с мыши

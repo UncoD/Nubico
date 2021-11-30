@@ -1,5 +1,5 @@
 ﻿using System;
-using Ungine;
+using Nubico.GameBase;
 
 namespace MyFirstGame
 {

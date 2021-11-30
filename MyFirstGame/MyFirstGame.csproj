@@ -69,9 +69,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\csharp_sfml_game_framework\Ungine.csproj">
+    <ProjectReference Include="..\csharp_sfml_game_framework\Nubico.csproj">
       <Project>{ce84e9f0-955b-4636-bd99-bef44faf905e}</Project>
-      <Name>Ungine</Name>
+      <Name>Nubico</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

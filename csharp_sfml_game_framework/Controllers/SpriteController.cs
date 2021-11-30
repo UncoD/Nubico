@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nubico.GameBase;
+using Nubico.Objects;
 using SFML.Graphics;
 using SFML.System;
 
-namespace Ungine
+namespace Nubico.Controllers
 {
     /// <summary>
     /// <br>Контроллер спрайтов</br>
@@ -110,6 +112,7 @@ namespace Ungine
         /// </summary>
         /// <param name="animationName">Название запускаемой анимации</param>
         /// <param name="restart">Перезапустить анимацию с первого кадра</param>
+        /// <param name="parent">Объект, которому принадлежит текущий контроллер</param>
         public void PlayAnimation(string animationName, bool restart = false, object parent = null)
         {
             if (!animations.ContainsKey(animationName))

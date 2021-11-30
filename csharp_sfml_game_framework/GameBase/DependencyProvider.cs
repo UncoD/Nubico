@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using SFML.Graphics;
 
-namespace Ungine
+namespace Nubico.GameBase
 {
     internal class DependencyProvider<T>
     {

@@ -1,12 +1,15 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
+using Nubico.Controllers;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace Ungine
+namespace Nubico.GameBase
 {
+    /// <summary>
+    /// Базовый класс игры
+    /// </summary>
     public class Game
     {
         private GameScene currentScene;

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CE84E9F0-955B-4636-BD99-BEF44FAF905E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Ungine</RootNamespace>
-    <AssemblyName>Ungine</AssemblyName>
+    <RootNamespace>Nubico</RootNamespace>
+    <AssemblyName>Nubico</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Ungine.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Nubico.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Ungine.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Nubico.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />

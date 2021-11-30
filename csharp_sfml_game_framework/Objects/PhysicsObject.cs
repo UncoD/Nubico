@@ -1,7 +1,6 @@
-using SFML.Graphics;
-using System;
+using Nubico.Interfaces;
 
-namespace Ungine
+namespace Nubico.Objects
 {
     /// <summary>
     /// Объект, который проверяется на столкновение с объектами этого же класса
@@ -81,6 +80,10 @@ namespace Ungine
             return false;
         }
 
+        /// <summary>
+        /// Вызывается при столкновении с другим объектом
+        /// </summary>
+        /// <param name="collideObject">Объект, с которым произошло столкновение</param>
         public virtual void OnCollide(GameObject collideObject) { }
 
         internal void ClearCollide()

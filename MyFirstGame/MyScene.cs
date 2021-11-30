@@ -1,4 +1,5 @@
-﻿using Ungine;
+﻿using Nubico.GameBase;
+using Nubico.Objects;
 using SFML.Graphics;
 using SFML.System;
 
@@ -18,8 +19,7 @@ namespace MyFirstGame
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
-            //mario = new Mario(50, 230);
-            mario = new Mario(50, 200);
+            mario = new Mario(50, 230);
             AddToScene(mario);
 
             enemy = new Enemy(Game.Width / 2, 242);
