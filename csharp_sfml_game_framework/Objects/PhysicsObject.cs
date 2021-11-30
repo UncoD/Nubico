@@ -56,13 +56,10 @@ namespace Ungine
         /// <returns>Столкнулись ли объекты</returns>
         public bool IsIntersects(PhysicsObject other)
         {
-            var thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + Velocity.X, Y - Height / 2, Width, Height);
-            var otherBoundsOnNextFrame = new FloatRect
-            (
-                other.X - other.Width / 2 + other.Velocity.X,
-                other.Y - other.Height / 2,
-                other.Width, other.Height
-            );
+            var thisBoundsOnNextFrame = SpriteController.GetBounds();
+            thisBoundsOnNextFrame.Left += Velocity.X;
+            var otherBoundsOnNextFrame = other.SpriteController.GetBounds();
+            otherBoundsOnNextFrame.Left += other.Velocity.X;
 
             if (thisBoundsOnNextFrame.Intersects(otherBoundsOnNextFrame))
             {
@@ -71,13 +68,8 @@ namespace Ungine
                 return true;
             }
 
-            thisBoundsOnNextFrame = new FloatRect(X - Width / 2 + Velocity.X, Y - Height / 2 + Velocity.Y, Width, Height);
-            otherBoundsOnNextFrame = new FloatRect
-            (
-                other.X - other.Width / 2 + other.Velocity.X,
-                other.Y - other.Height / 2 + other.Velocity.Y,
-                other.Width, other.Height
-            );
+            thisBoundsOnNextFrame.Top += Velocity.Y;
+            otherBoundsOnNextFrame.Top += other.Velocity.Y;
             
             if (thisBoundsOnNextFrame.Intersects(otherBoundsOnNextFrame))
             {

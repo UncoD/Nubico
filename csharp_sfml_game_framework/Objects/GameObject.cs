@@ -1,6 +1,7 @@
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using System;
 
 namespace Ungine
 {
@@ -113,12 +114,13 @@ namespace Ungine
 
             if (Game.DrawObjectBorders)
             {
-                var border = new RectangleShape(new Vector2f(Width, Height))
+                var border = new RectangleShape(new Vector2f(Width - 2, Height - 2))
                 {
                     OutlineColor = Color.Green,
                     FillColor = Color.Transparent,
-                    OutlineThickness = 2,
-                    Origin = new Vector2f(Width / 2, Height / 2),
+                    OutlineThickness = 1,
+                    Origin = new Vector2f(Math.Abs(Origin.X * Scale.X), Math.Abs(Origin.Y * Scale.Y)),
+                    Scale = new Vector2f(Math.Sign(Scale.X), Math.Sign(Scale.Y)),
                     Position = Position
                 };
 

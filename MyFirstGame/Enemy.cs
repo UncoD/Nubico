@@ -14,8 +14,8 @@ namespace MyFirstGame
         {
             bottom = y;
             top = y - 150;
-            Origin = new Vector2f(Width / 2, Height / 2);
             Scale = new Vector2f(3, 3);
+            Origin = new Vector2f(Width / 2, Height / 2);
         }
 
         public override void OnEachFrame()

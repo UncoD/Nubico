@@ -19,7 +19,7 @@ namespace MyFirstGame
                 "Art/Player/player_3.png"
             );
             Scale = new Vector2f(3, 3);
-            Origin = new Vector2f(Width / 2, Height / 2);
+            Origin = new Vector2f(0, 0);
         }
 
         public override void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed)
@@ -82,7 +82,11 @@ namespace MyFirstGame
 
         public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
         {
-            Console.WriteLine(position);
+            // Проверяет, что кликнули по Марио один раз
+            if (HoverOnThis() && !IsAlreadyClicked)
+            {
+                Console.WriteLine(position);
+            } 
         }
     }
 }
