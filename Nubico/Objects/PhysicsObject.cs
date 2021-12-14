@@ -1,94 +1,75 @@
-using Nubico.Interfaces;
+п»їusing Box2DX.Collision;
+using Box2DX.Common;
+using Box2DX.Dynamics;
+using SFML.Graphics;
+using SFML.System;
 
 namespace Nubico.Objects
 {
-    /// <summary>
-    /// Объект, который проверяется на столкновение с объектами этого же класса
-    /// </summary>
-    public class PhysicsObject : GameObject, IOnCollidable
+    public class PhysicsObject : GameObject
     {
-        /// <summary>
-        /// <br>Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения</br>
-        /// <br>Изменяется при столкновении объектов</br>
-        /// </summary>
-        protected CollideType collideType = CollideType.None;
-        
-        /// <summary>
-        /// Конуструктор физического объекта, содержащего графическое представление
-        /// </summary>
-        /// <param name="x">Горизонтальная позиция</param>
-        /// <param name="y">Вертикальная позиция</param>
-        /// <param name="pathToSprite">Путь к файлу изображения (.png, .jpg)</param>
-        public PhysicsObject(float x, float y, string pathToSprite) : base(x, y, pathToSprite) {}
+        private Body body;
+        private RectangleShape cs;
 
-        /// <summary>
-        /// Конструктор физичекого объекта без начального графического представления
-        /// </summary>
-        /// <param name="x">Горизонтальная позиция</param>
-        /// <param name="y">Вертикальная позиция</param>
-        public PhysicsObject(float x, float y) : base(x, y) {}
-
-        /// <summary>
-        /// Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения
-        /// </summary>
-        protected enum CollideType
+        public PhysicsObject(float x, float y) : base(x, y)
         {
-            /// <summary>
-            /// Вертикальное столкновение - объекты столкнулись боковыми сторонами
-            /// </summary>
-            Vertical,
-            /// <summary>
-            /// Горизонтальное столкновение - объекты столкнулись верхней и нижней сторонами
-            /// </summary>
-            Horizontal,
-            /// <summary>
-            /// Столкновения не произошло
-            /// </summary>
-            None
+            BodyDef bodyDef = new BodyDef();
+            bodyDef.Position.Set(x, y);
+            body = Game.PhysicsWorld.CreateBody(bodyDef);
+            PolygonDef shapeDef = new PolygonDef();
+            shapeDef.SetAsBox(1.0f, 1.0f);
+            shapeDef.Density = 1.0f;
+            shapeDef.Friction = 0.3f;
+            shapeDef.Restitution = 1;
+            body.CreateFixture(shapeDef);
+            body.SetMassFromShapes();
+            body.SetLinearVelocity(new Vec2(-1, -6));
+
+            cs = new RectangleShape(new Vector2f(200, 200));
+            cs.FillColor = SFML.Graphics.Color.Blue;
+            cs.Origin = new Vector2f(100, 100);
+            Vec2 position = body.GetPosition();
+            cs.Position = new Vector2f(position.X * 100, position.Y * 100);
         }
 
-        /// <summary>
-        /// <br>Проверка на столкновение с другим физическим объектом</br>
-        /// <br>Сохраняет тип столкновения (collideType): горизонтальное, вертикальное, не было столкновения</br>
-        /// </summary>
-        /// <param name="other">Физический объект, с которым осуществляется проверка</param>
-        /// <returns>Столкнулись ли объекты</returns>
-        public bool IsIntersects(PhysicsObject other)
+        internal override void UpdateObject()
         {
-            var thisBoundsOnNextFrame = SpriteController.GetBounds();
-            thisBoundsOnNextFrame.Left += Velocity.X;
-            var otherBoundsOnNextFrame = other.SpriteController.GetBounds();
-            otherBoundsOnNextFrame.Left += other.Velocity.X;
+            Vec2 position = body.GetPosition();
+            cs.Position = new Vector2f(position.X * 100, position.Y * 100);
+            cs.Rotation = body.GetAngle() * 180 / MathF.PI;
 
-            if (thisBoundsOnNextFrame.Intersects(otherBoundsOnNextFrame))
+            if (cs.Position.X < -cs.Size.X || cs.Position.X > Game.Width + cs.Size.X
+                || cs.Position.Y < -cs.Size.Y || cs.Position.Y > Game.Height + cs.Size.Y)
             {
-                collideType = CollideType.Horizontal;
-                other.collideType = collideType;
-                return true;
+                Game.PhysicsWorld.DestroyBody(body);
+                DeleteFromGame();
             }
-
-            thisBoundsOnNextFrame.Top += Velocity.Y;
-            otherBoundsOnNextFrame.Top += other.Velocity.Y;
-            
-            if (thisBoundsOnNextFrame.Intersects(otherBoundsOnNextFrame))
+            else
             {
-                collideType = CollideType.Vertical;
-                other.collideType = collideType;
-                return true;
+                OnEachFrame();
             }
-            
-            return false;
         }
 
-        /// <summary>
-        /// Вызывается при столкновении с другим объектом
-        /// </summary>
-        /// <param name="collideObject">Объект, с которым произошло столкновение</param>
-        public virtual void OnCollide(GameObject collideObject) { }
-
-        internal void ClearCollide()
+        public override void Draw(RenderTarget target, RenderStates states)
         {
-            collideType = CollideType.None;
+            target.Draw(cs, states);
+
+            if (Game.DrawObjectBorders)
+            {
+                var shape = (PolygonShape)body.GetFixtureList().Shape;
+                var polygon = new ConvexShape(4)
+                {
+                    OutlineColor = SFML.Graphics.Color.Green,
+                    OutlineThickness = 2,
+                    FillColor = SFML.Graphics.Color.Transparent
+                };
+                for (uint i = 0; i < 4; i++)
+                {
+                    var vertex = body.GetWorldPoint(shape.Vertices[i]);
+                    polygon.SetPoint(i, new Vector2f(vertex.X * 100, vertex.Y * 100));
+                }
+                target.Draw(polygon, states);
+            }
         }
     }
 }

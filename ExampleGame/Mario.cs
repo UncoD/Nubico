@@ -5,7 +5,7 @@ using Nubico.Objects;
 
 namespace ExampleGame
 {
-    public class Mario : PhysicsObject
+    public class Mario : AreaObject
     {
         private bool isMoveLeft;
         private bool isMoving;

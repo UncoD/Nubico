@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Threading;
+using Box2DX.Collision;
+using Box2DX.Common;
+using Box2DX.Dynamics;
 using Nubico.Controllers;
 using SFML.Graphics;
 using SFML.System;
@@ -41,6 +44,8 @@ namespace Nubico.GameBase
         /// </summary>
         public bool DrawObjectBorders = false;
 
+        internal World PhysicsWorld;
+
         /// <summary>
         /// Конструктор, для создания объекта Игра (инициализация окна приложения)
         /// </summary>
@@ -52,7 +57,6 @@ namespace Nubico.GameBase
         /// <br>Styles.Fullscreen - полноэкранный режим</br>
         /// <br>Styles.Default - можно закрывать/сворачивать окно, изменять раземер</br>
         /// </param>
-
         public Game(int width, int height, string name, Styles style = Styles.Close)
         {
             // Для внедрения зависимости повсюду
@@ -71,6 +75,13 @@ namespace Nubico.GameBase
 
             MusicController = new MusicController();
             MusicController.SetLoop(true);
+
+            var worldAABB = new AABB();
+            worldAABB.LowerBound.Set(-100.0f);
+            worldAABB.UpperBound.Set(100.0f);
+            Vec2 gravity = new Vec2(0.0f, 10.0f);
+            const bool DoSleep = true;
+            PhysicsWorld = new World(worldAABB, gravity, DoSleep);
         }
 
         /// <summary>
@@ -134,12 +145,18 @@ namespace Nubico.GameBase
         /// </summary>
         public void Start()
         {
+            const float TimeStep = 1.0f / 60.0f;
+            const int VelocityIterations = 8;
+            const int PositionIterations = 1;
+
             while (Window.IsOpen)
             {
                 if (clock.ElapsedTime.AsSeconds() > 0.0004)
                 {
                     Window.DispatchEvents();
                     clock.Restart();
+
+                    PhysicsWorld.Step(TimeStep, VelocityIterations, PositionIterations);
                     currentScene.UpdateScene();
 
                     Window.Clear();

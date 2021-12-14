@@ -25,6 +25,9 @@ namespace Nubico.Objects
         /// Приоритет отрисовки объекта (чем меньше, тем раньше отображается объекта, тем "дальше" он от игрока)
         /// </summary>
         public int DrawPriority = 0;
+        /// <summary>
+        /// Контроллер спрайтов
+        /// </summary>
         internal SpriteController SpriteController;
         /// <summary>
         /// Позиция объекта по горизонтали
@@ -81,8 +84,6 @@ namespace Nubico.Objects
             SpriteController = new SpriteController();
             MusicController = Game.MusicController;
             Position = new Vector2f(x, y);
-
-            // TODO: getter setter for Scale (change Origin).
         }
 
         /// <summary>

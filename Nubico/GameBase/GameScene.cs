@@ -132,8 +132,8 @@ namespace Nubico.GameBase
             {
                 for (var j = i + 1; j < collidables.Count; j++)
                 {
-                    if (collidables[i] is PhysicsObject first &&
-                        collidables[j] is PhysicsObject second &&
+                    if (collidables[i] is AreaObject first &&
+                        collidables[j] is AreaObject second &&
                         first.IsIntersects(second))
                     {
                         collidables[j].OnCollide(first);
@@ -147,7 +147,7 @@ namespace Nubico.GameBase
         {
             for (var i = 0; i < collidables.Count; i++)
             {
-                if (collidables[i] is PhysicsObject obj)
+                if (collidables[i] is AreaObject obj)
                 {
                     obj.ClearCollide();
                 }

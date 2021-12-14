@@ -3,7 +3,7 @@ using Nubico.Objects;
 
 namespace ExampleGame
 {
-    class Enemy : PhysicsObject
+    class Enemy : AreaObject
     {
         private float bottom;
         private float top;
