@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nubico", "Nubico\Nubico.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleGame", "ExampleGame\ExampleGame.csproj", "{FEDF9DEF-F3AE-4D6C-9729-E82682CAA52E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamplePhysicsGame", "ExamplePhysicsGame\ExamplePhysicsGame.csproj", "{D70FE5E2-F3C7-46FD-B66D-086493B77DBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamplePhysicsGame", "ExamplePhysicsGame\ExamplePhysicsGame.csproj", "{D70FE5E2-F3C7-46FD-B66D-086493B77DBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame", "TestGame\TestGame.csproj", "{3D97A806-CDDE-402D-AF1F-31C890665027}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D70FE5E2-F3C7-46FD-B66D-086493B77DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D70FE5E2-F3C7-46FD-B66D-086493B77DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D70FE5E2-F3C7-46FD-B66D-086493B77DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D97A806-CDDE-402D-AF1F-31C890665027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D97A806-CDDE-402D-AF1F-31C890665027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D97A806-CDDE-402D-AF1F-31C890665027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D97A806-CDDE-402D-AF1F-31C890665027}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,5 @@
-﻿using Box2DX.Collision;
-using Box2DX.Common;
-using Box2DX.Dynamics;
-using Nubico.GameBase;
+﻿using Nubico.GameBase;
 using Nubico.Objects;
-using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
@@ -15,7 +11,7 @@ namespace ExamplePhysicsGame
         {
             public MyScene()
             {
-                var obj = new PhysicsObject(4, 3);
+                var obj = new PhysicsObject(600, 400, true, true);
                 AddToScene(obj);
             }
 
@@ -23,7 +19,7 @@ namespace ExamplePhysicsGame
             {
                 if (!isAlreadyClicked)
                 {
-                    var obj = new PhysicsObject(position.X / 100, position.Y / 100);
+                    var obj = new PhysicsObject(position.X, position.Y, false, false);
                     AddToScene(obj);
                 }
             }
