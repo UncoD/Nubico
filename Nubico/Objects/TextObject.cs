@@ -113,8 +113,8 @@ namespace Nubico.Objects
         /// <br>Отображает игровой объект в окне приложения</br>
         /// <br>Если Game.DrawObjectBorders = true, отображает границы объекта</br>
         /// </summary>
-        /// <param name="target">Цель отрисовки (окно приложения)</param>
-        /// <param name="states">Параметры трансформации при отображениии</param>
+        /// <param name="target">Цель для отображения (окно приложения)</param>
+        /// <param name="states">Параметры трансформации при отображении</param>
         public override void Draw(RenderTarget target, RenderStates states)
         {
             states.Transform *= Transform;

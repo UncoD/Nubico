@@ -1,5 +1,6 @@
 ﻿using Nubico.GameBase;
 using Nubico.Objects;
+using Nubico.Objects.Physics;
 using SFML.System;
 using SFML.Window;
 

@@ -55,7 +55,7 @@ namespace Nubico.GameBase
         /// <param name="style">
         /// <br>По умолчанию активна кнопка скрытия окна, нельзя изменять размер</br>
         /// <br>Styles.Fullscreen - полноэкранный режим</br>
-        /// <br>Styles.Default - можно закрывать/сворачивать окно, изменять раземер</br>
+        /// <br>Styles.Default - можно закрывать/сворачивать окно, изменять размер</br>
         /// </param>
         public Game(int width, int height, string name, Styles style = Styles.Close)
         {

@@ -8,13 +8,13 @@ namespace Nubico.Objects
     public class AreaObject : GameObject, IOnCollidable
     {
         /// <summary>
-        /// <br>Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения</br>
+        /// <br>Тип столкновения: горизонтальное, вертикальное, отсутствие столкновения</br>
         /// <br>Изменяется при столкновении объектов</br>
         /// </summary>
         protected CollideType collideType = CollideType.None;
         
         /// <summary>
-        /// Конуструктор физического объекта, содержащего графическое представление
+        /// Конструктор физического объекта, содержащего графическое представление
         /// </summary>
         /// <param name="x">Горизонтальная позиция</param>
         /// <param name="y">Вертикальная позиция</param>
@@ -22,14 +22,14 @@ namespace Nubico.Objects
         public AreaObject(float x, float y, string pathToSprite) : base(x, y, pathToSprite) {}
 
         /// <summary>
-        /// Конструктор физичекого объекта без начального графического представления
+        /// Конструктор физического объекта без начального графического представления
         /// </summary>
         /// <param name="x">Горизонтальная позиция</param>
         /// <param name="y">Вертикальная позиция</param>
         public AreaObject(float x, float y) : base(x, y) {}
 
         /// <summary>
-        /// Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения
+        /// Тип столкновения: горизонтальное, вертикальное, отсутствие столкновения
         /// </summary>
         protected enum CollideType
         {

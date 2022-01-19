@@ -64,7 +64,7 @@ namespace Nubico.Objects
         public bool IsBroken { get; internal set; }
 
         /// <summary>
-        /// Конуструктор игрового объекта, содержащего графическое представление
+        /// Конструктор игрового объекта, содержащего графическое представление
         /// </summary>
         /// <param name="x">Горизонтальная позиция</param>
         /// <param name="y">Вертикальная позиция</param>
