@@ -4,6 +4,7 @@ using Box2DX.Collision;
 using Box2DX.Common;
 using Box2DX.Dynamics;
 using Nubico.Controllers;
+using Nubico.Utils;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -19,6 +20,7 @@ namespace Nubico.GameBase
         private Clock clock = new Clock();
 
         internal readonly RenderWindow Window;
+        internal World PhysicsWorld;
 
         /// <summary>
         /// Список нажатых клавиш на текущем кадре
@@ -44,7 +46,15 @@ namespace Nubico.GameBase
         /// </summary>
         public bool DrawObjectBorders = false;
 
-        internal World PhysicsWorld;
+        private Vector2f _gravity;
+        public Vector2f Gravity {
+            get => _gravity;
+            set
+            {
+                _gravity = value;
+                PhysicsWorld.Gravity = _gravity.ToVec();
+            }
+        }
 
         /// <summary>
         /// Конструктор, для создания объекта Игра (инициализация окна приложения)
@@ -79,9 +89,10 @@ namespace Nubico.GameBase
             var worldAABB = new AABB();
             worldAABB.LowerBound.Set(-100.0f);
             worldAABB.UpperBound.Set(100.0f);
-            Vec2 gravity = new Vec2(0.0f, 10.0f);
+            var gravity = new Vec2(0.0f, 10f);
             const bool DoSleep = true;
             PhysicsWorld = new World(worldAABB, gravity, DoSleep);
+            Gravity = gravity.ToVector();
         }
 
         /// <summary>

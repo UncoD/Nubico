@@ -3,6 +3,7 @@ using System.Linq;
 using Nubico.Controllers;
 using Nubico.Interfaces;
 using Nubico.Objects;
+using Nubico.Objects.Physics;
 using SFML.System;
 using SFML.Window;
 
@@ -77,6 +78,10 @@ namespace Nubico.GameBase
         {
             foreach (var gameObject in GameObjects)
             {
+                if (gameObject is PhysicsObject)
+                {
+                    ;
+                }
                 if (gameObject.IsBroken)
                 {
                     continue;

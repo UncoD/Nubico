@@ -1,16 +1,15 @@
 ﻿using SFML.System;
 using SFML.Window;
-using System;
 using Nubico.Objects;
 
 namespace ExampleGame
 {
-    public class Mario : AreaObject
+    public class Player : AreaObject
     {
         private bool isMoveLeft;
         private bool isMoving;
         private int speedX = 5, speedY = 0;
-        public Mario(float x, float y) : base(x, y, "Art/Player/player_0.png")
+        public Player(float x, float y) : base(x, y, "Art/Player/player_0.png")
         {
             AddAnimation("walk", 0.1f,
                 "Art/Player/player_0.png",
@@ -74,6 +73,7 @@ namespace ExampleGame
             {
                 PlayAnimation("walk");
             }
+            Rotation += 1;
 
             isMoving = false;
             Velocity = new Vector2f(0, 0);
@@ -81,7 +81,7 @@ namespace ExampleGame
 
         public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
         {
-            // Проверяет, что кликнули по Марио один раз
+            // Проверяет, что кликнули по Игроку один раз
             if (HoverOnThis() && !IsAlreadyClicked)
             {
                 Console.WriteLine(position);

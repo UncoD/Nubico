@@ -7,7 +7,7 @@ namespace Nubico.Objects.Physics
     {
         private readonly PhysicsBody physicsBody;
 
-        public PhysicsObject(PhysicsBody body) : base(0, 0)
+        public PhysicsObject(PhysicsBody body, string pathToTexture = "") : base(0, 0, pathToTexture)
         {
             physicsBody = body;
         }
@@ -22,10 +22,13 @@ namespace Nubico.Objects.Physics
                 Rotation = shape.Rotation;
             }
             OnEachFrame();
+            SpriteController.UpdateAnimation();
+            SpriteController.SynchronizeSprite(this);
         }
 
         public override void Draw(RenderTarget target, RenderStates states)
         {
+            SpriteController.TryDraw(target);
             if (Game.DrawObjectBorders)
             {
                 target.Draw(physicsBody.GetShape(), states);

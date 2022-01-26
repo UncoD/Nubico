@@ -15,4 +15,13 @@
     <ProjectReference Include="..\Nubico\Nubico.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="enemy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
