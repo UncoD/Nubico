@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# IDE0005: Директива using не нужна.
-dotnet_diagnostic.IDE0005.severity = suggestion
