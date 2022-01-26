@@ -5,31 +5,31 @@ namespace Nubico.Objects
     /// <summary>
     /// Объект, который проверяется на столкновение с объектами этого же класса
     /// </summary>
-    public class PhysicsObject : GameObject, IOnCollidable
+    public class AreaObject : GameObject, IOnCollidable
     {
         /// <summary>
-        /// <br>Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения</br>
+        /// <br>Тип столкновения: горизонтальное, вертикальное, отсутствие столкновения</br>
         /// <br>Изменяется при столкновении объектов</br>
         /// </summary>
         protected CollideType collideType = CollideType.None;
         
         /// <summary>
-        /// Конуструктор физического объекта, содержащего графическое представление
+        /// Конструктор физического объекта, содержащего графическое представление
         /// </summary>
         /// <param name="x">Горизонтальная позиция</param>
         /// <param name="y">Вертикальная позиция</param>
         /// <param name="pathToSprite">Путь к файлу изображения (.png, .jpg)</param>
-        public PhysicsObject(float x, float y, string pathToSprite) : base(x, y, pathToSprite) {}
+        public AreaObject(float x, float y, string pathToSprite) : base(x, y, pathToSprite) {}
 
         /// <summary>
-        /// Конструктор физичекого объекта без начального графического представления
+        /// Конструктор физического объекта без начального графического представления
         /// </summary>
         /// <param name="x">Горизонтальная позиция</param>
         /// <param name="y">Вертикальная позиция</param>
-        public PhysicsObject(float x, float y) : base(x, y) {}
+        public AreaObject(float x, float y) : base(x, y) {}
 
         /// <summary>
-        /// Тип столкновения: горизонтальное, вертикальное, отстутствие столкновения
+        /// Тип столкновения: горизонтальное, вертикальное, отсутствие столкновения
         /// </summary>
         protected enum CollideType
         {
@@ -53,7 +53,7 @@ namespace Nubico.Objects
         /// </summary>
         /// <param name="other">Физический объект, с которым осуществляется проверка</param>
         /// <returns>Столкнулись ли объекты</returns>
-        public bool IsIntersects(PhysicsObject other)
+        public bool IsIntersects(AreaObject other)
         {
             var thisBoundsOnNextFrame = SpriteController.GetBounds();
             thisBoundsOnNextFrame.Left += Velocity.X;

@@ -7,7 +7,7 @@ namespace ExampleGame
 {
     public class MyScene : GameScene
     {
-        private Mario mario;
+        private Player player;
         private Enemy enemy;
         private TextObject scoreText;
         private int score = 0;
@@ -19,8 +19,8 @@ namespace ExampleGame
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
-            mario = new Mario(50, 230);
-            AddToScene(mario);
+            player = new Player(50, 200);
+            AddToScene(player);
 
             enemy = new Enemy(Game.Width / 2, 242);
             AddToScene(enemy);
@@ -37,7 +37,7 @@ namespace ExampleGame
 
         public override void OnEachFrame()
         {
-            if (mario.X <= enemy.X + 2 && mario.X >= enemy.X - 2)
+            if (player.X <= enemy.X + 2 && player.X >= enemy.X - 2)
             {
                 score++;
                 scoreText.SetText(score);

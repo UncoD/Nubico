@@ -1,6 +1,7 @@
 using Nubico.Controllers;
 using Nubico.GameBase;
 using Nubico.Interfaces;
+using Nubico.Objects.Physics;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -25,6 +26,9 @@ namespace Nubico.Objects
         /// Приоритет отрисовки объекта (чем меньше, тем раньше отображается объекта, тем "дальше" он от игрока)
         /// </summary>
         public int DrawPriority = 0;
+        /// <summary>
+        /// Контроллер спрайтов
+        /// </summary>
         internal SpriteController SpriteController;
         /// <summary>
         /// Позиция объекта по горизонтали
@@ -61,7 +65,7 @@ namespace Nubico.Objects
         public bool IsBroken { get; internal set; }
 
         /// <summary>
-        /// Конуструктор игрового объекта, содержащего графическое представление
+        /// Конструктор игрового объекта, содержащего графическое представление
         /// </summary>
         /// <param name="x">Горизонтальная позиция</param>
         /// <param name="y">Вертикальная позиция</param>
@@ -81,8 +85,6 @@ namespace Nubico.Objects
             SpriteController = new SpriteController();
             MusicController = Game.MusicController;
             Position = new Vector2f(x, y);
-
-            // TODO: getter setter for Scale (change Origin).
         }
 
         /// <summary>
@@ -122,9 +124,10 @@ namespace Nubico.Objects
                     OutlineColor = Color.Green,
                     FillColor = Color.Transparent,
                     OutlineThickness = 1,
-                    Origin = new Vector2f(Math.Abs(Origin.X * Scale.X), Math.Abs(Origin.Y * Scale.Y)),
+                    //Origin = new Vector2f(Math.Abs(Origin.X * Scale.X), Math.Abs(Origin.Y * Scale.Y)),
+                    Origin = new Vector2f((Width - 2) / 2, (Height - 2) / 2),
                     Scale = new Vector2f(Math.Sign(Scale.X), Math.Sign(Scale.Y)),
-                    Position = Position
+                    Position = Position,
                 };
 
                 target.Draw(border);
@@ -192,8 +195,19 @@ namespace Nubico.Objects
         /// <param name="path">Путь к файлу изображения (.png, .jpg)</param>
         public void SetSprite(string path)
         {
-            SpriteController.CreateSprite(path);
-            Origin = SpriteController.CurrentSprite.Origin;
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+            try
+            {
+                SpriteController.CreateSprite(path);
+                Origin = SpriteController.CurrentSprite.Origin;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         /// <summary>

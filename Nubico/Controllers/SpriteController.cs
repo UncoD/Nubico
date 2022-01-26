@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Nubico.GameBase;
+﻿using Nubico.GameBase;
 using Nubico.Objects;
 using SFML.Graphics;
 using SFML.System;
@@ -14,7 +11,7 @@ namespace Nubico.Controllers
     /// </summary>
     internal class SpriteController
     {
-        internal Sprite CurrentSprite { get; private set; }
+        internal Sprite? CurrentSprite { get; private set; }
         private string currentAnimation = "";
         private readonly Dictionary<string, Texture> textures = TexturesProvider.ProvideDependency();
         private readonly Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
@@ -153,7 +150,7 @@ namespace Nubico.Controllers
         }
 
         /// <summary>
-        /// Установить частоту обновления кадров для конкретной анимаии
+        /// Установить частоту обновления кадров для конкретной анимации
         /// </summary>
         /// <param name="animationName">Название добавленной анимации</param>
         /// <param name="delay">Задержка между кадрами в секундах</param>

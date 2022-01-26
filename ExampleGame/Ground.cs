@@ -4,7 +4,7 @@ using Nubico.Objects;
 
 namespace ExampleGame
 {
-    public class Ground : PhysicsObject
+    public class Ground : AreaObject
     {
         public Ground(float x, float y) : base(x, y, "Art/ground.png")
         {

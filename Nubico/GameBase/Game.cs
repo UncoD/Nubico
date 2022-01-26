@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using System.Threading;
+using Box2DX.Collision;
+using Box2DX.Common;
+using Box2DX.Dynamics;
 using Nubico.Controllers;
+using Nubico.Utils;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -16,6 +20,7 @@ namespace Nubico.GameBase
         private Clock clock = new Clock();
 
         internal readonly RenderWindow Window;
+        internal World PhysicsWorld;
 
         /// <summary>
         /// Список нажатых клавиш на текущем кадре
@@ -41,6 +46,16 @@ namespace Nubico.GameBase
         /// </summary>
         public bool DrawObjectBorders = false;
 
+        private Vector2f _gravity;
+        public Vector2f Gravity {
+            get => _gravity;
+            set
+            {
+                _gravity = value;
+                PhysicsWorld.Gravity = _gravity.ToVec();
+            }
+        }
+
         /// <summary>
         /// Конструктор, для создания объекта Игра (инициализация окна приложения)
         /// </summary>
@@ -50,9 +65,8 @@ namespace Nubico.GameBase
         /// <param name="style">
         /// <br>По умолчанию активна кнопка скрытия окна, нельзя изменять размер</br>
         /// <br>Styles.Fullscreen - полноэкранный режим</br>
-        /// <br>Styles.Default - можно закрывать/сворачивать окно, изменять раземер</br>
+        /// <br>Styles.Default - можно закрывать/сворачивать окно, изменять размер</br>
         /// </param>
-
         public Game(int width, int height, string name, Styles style = Styles.Close)
         {
             // Для внедрения зависимости повсюду
@@ -71,6 +85,14 @@ namespace Nubico.GameBase
 
             MusicController = new MusicController();
             MusicController.SetLoop(true);
+
+            var worldAABB = new AABB();
+            worldAABB.LowerBound.Set(-100.0f);
+            worldAABB.UpperBound.Set(100.0f);
+            var gravity = new Vec2(0.0f, 10f);
+            const bool DoSleep = true;
+            PhysicsWorld = new World(worldAABB, gravity, DoSleep);
+            Gravity = gravity.ToVector();
         }
 
         /// <summary>
@@ -134,12 +156,18 @@ namespace Nubico.GameBase
         /// </summary>
         public void Start()
         {
+            const float TimeStep = 1.0f / 60.0f;
+            const int VelocityIterations = 8;
+            const int PositionIterations = 1;
+
             while (Window.IsOpen)
             {
                 if (clock.ElapsedTime.AsSeconds() > 0.0004)
                 {
                     Window.DispatchEvents();
                     clock.Restart();
+
+                    PhysicsWorld.Step(TimeStep, VelocityIterations, PositionIterations);
                     currentScene.UpdateScene();
 
                     Window.Clear();

@@ -3,7 +3,7 @@ using Nubico.Objects;
 
 namespace ExampleGame
 {
-    class Enemy : PhysicsObject
+    class Enemy : AreaObject
     {
         private float bottom;
         private float top;
@@ -19,6 +19,7 @@ namespace ExampleGame
 
         public override void OnEachFrame()
         {
+            Rotation += 5;
             if (isMoveDown)
             {
                 Velocity = new Vector2f(0, speed);
