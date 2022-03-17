@@ -19,7 +19,6 @@ namespace ExampleGame
 
         public override void OnEachFrame()
         {
-            Rotation += 5;
             if (isMoveDown)
             {
                 Velocity = new Vector2f(0, speed);
