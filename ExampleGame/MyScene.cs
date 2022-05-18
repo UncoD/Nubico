@@ -21,7 +21,7 @@ namespace ExampleGame
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
-            player = new Player(50, 230);
+            player = new Player(50, 225);
             AddToScene(player);
 
             enemy = new Enemy(Game.Width / 2.0f, 242);

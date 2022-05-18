@@ -124,7 +124,6 @@ namespace Nubico.Objects
                     OutlineColor = Color.Green,
                     FillColor = Color.Transparent,
                     OutlineThickness = 1,
-                    //Origin = new Vector2f(Math.Abs(Origin.X * Scale.X), Math.Abs(Origin.Y * Scale.Y)),
                     Origin = new Vector2f((Width - 2) / 2, (Height - 2) / 2),
                     Scale = new Vector2f(Math.Sign(Scale.X), Math.Sign(Scale.Y)),
                     Position = Position,
