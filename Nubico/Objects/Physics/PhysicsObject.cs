@@ -5,21 +5,34 @@ namespace Nubico.Objects.Physics
 {
     public class PhysicsObject : GameObject
     {
-        private readonly PhysicsBody physicsBody;
+        protected PhysicsBody? PhysicsBody { get; set; }
+        public bool EnableShapeRotation { get; set; } = true;
 
-        public PhysicsObject(PhysicsBody body, string pathToTexture = "") : base(0, 0, pathToTexture)
+        public PhysicsObject(PhysicsBody? body = null, float x = 0, float y = 0, string pathToTexture = "") : base(x, y, pathToTexture)
         {
-            physicsBody = body;
+            PhysicsBody = body;
         }
 
         internal override void UpdateObject()
         {
-            physicsBody.SyncShapeBody();
-            var shape = physicsBody.GetShape();
+            if (PhysicsBody == null)
+            {
+                return;
+            }
+
+            PhysicsBody.SetVelocity(Velocity);
+            PhysicsBody.SyncShapeBody();
+            var shape = PhysicsBody.GetShape();
             if (shape != null)
             {
                 Position = shape.Position;
-                Rotation = shape.Rotation;
+                if (EnableShapeRotation)
+                {
+                    Rotation = shape.Rotation;
+                } else
+                {
+                    shape.Rotation = Rotation;
+                }
             }
             OnEachFrame();
             SpriteController.UpdateAnimation();
@@ -28,10 +41,15 @@ namespace Nubico.Objects.Physics
 
         public override void Draw(RenderTarget target, RenderStates states)
         {
+            if (PhysicsBody == null)
+            {
+                return;
+            }
+
             SpriteController.TryDraw(target);
             if (Game.DrawObjectBorders)
             {
-                target.Draw(physicsBody.GetShape(), states);
+                target.Draw(PhysicsBody.GetShape(), states);
             }
         }
     }

@@ -73,7 +73,6 @@ namespace ExampleGame
             {
                 PlayAnimation("walk");
             }
-            Rotation += 1;
 
             isMoving = false;
             Velocity = new Vector2f(0, 0);

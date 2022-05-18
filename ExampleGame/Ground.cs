@@ -1,5 +1,4 @@
 ﻿using SFML.System;
-using Nubico;
 using Nubico.Objects;
 
 namespace ExampleGame

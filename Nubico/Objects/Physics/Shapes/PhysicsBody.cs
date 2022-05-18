@@ -21,11 +21,17 @@ public class PhysicsBody
         var bodyPos = position * 2 / Constants.PPM;
         bodyDef.Position.Set(bodyPos.X, bodyPos.Y);
         Body = game.PhysicsWorld.CreateBody(bodyDef);
+        SetVelocity(new Vector2f(0, 0));
     }
 
     internal Shape? GetShape()
     {
         return Shape;
+    }
+
+    internal void SetVelocity(Vector2f velocity)
+    {
+        Body?.SetLinearVelocity(velocity.ToVec());
     }
     
     internal void SyncShapeBody()
