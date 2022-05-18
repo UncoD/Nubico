@@ -53,7 +53,7 @@ namespace Nubico.Objects
         /// <summary>
         /// Контроллер звуков
         /// </summary>
-        protected SoundController SoundController = new SoundController();
+        protected SoundController SoundController = new();
         /// <summary>
         /// Контроллер музыки - общий для всей игры
         /// </summary>
@@ -246,13 +246,27 @@ namespace Nubico.Objects
         public virtual void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed) { }
 
         /// <summary>
-        /// <br>Вызывается при любом нажатии мыши, даже мимо обеъкта</br>
-        /// <br>Для проверки нажатия на объект использовать успловие HoverOnThis()</br>
+        /// Вызывается при нажатии клавиш клавиатуры
+        /// </summary>
+        /// <param name="pressedKeys">Список нажатых клавиш на текущем кадре</param>
+        public virtual void OnKeyPress(Dictionary<Keyboard.Key, bool> pressedKeys) { }
+
+        /// <summary>
+        /// <br>Вызывается при любом нажатии мыши, даже мимо объекта</br>
+        /// <br>Для проверки нажатия на объект использовать условие HoverOnThis()</br>
         /// </summary>
         /// <param name="mouseButton">Нажатая кнопка</param>
         /// <param name="position">Позиция указателя в момент клика</param>
         /// <param name="isAlreadyClicked">Была ли нажата кнопка на предыдущем кадре (определение зажатия)</param>
         public virtual void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClicked) { }
+
+        /// <summary>
+        /// <br>Вызывается при любом нажатии мыши, даже мимо объекта</br>
+        /// <br>Для проверки нажатия на объект использовать условие HoverOnThis()</br>
+        /// </summary>
+        /// <param name="mouseButtons">Список нажатых кнопок мыши</param>
+        public virtual void OnMouseClick(Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClicked)> mouseButtons) { }
+
         /// <summary>
         /// Вызывается перед удалением объекта со сцены
         /// </summary>

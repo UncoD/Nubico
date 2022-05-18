@@ -13,5 +13,11 @@ namespace Nubico.Interfaces
         /// <param name="pressedKey">Нажатая клавиша</param>
         /// <param name="isAlreadyPressed">Была ли нажата клавиша на предыдущем кадре (определение зажатия)</param>
         void OnKeyPress(Keyboard.Key pressedKey, bool isAlreadyPressed);
+
+        /// <summary>
+        /// Вызывается при нажатии клавиш клавиатуры
+        /// </summary>
+        /// <param name="pressedKeys">Список нажатых клавиш на текущем кадре</param>
+        void OnKeyPress(Dictionary<Keyboard.Key, bool> pressedKeys);
     }
 }

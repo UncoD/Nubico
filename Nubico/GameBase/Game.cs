@@ -17,7 +17,7 @@ namespace Nubico.GameBase
     public class Game
     {
         private GameScene currentScene;
-        private Clock clock = new Clock();
+        private readonly Clock clock = new();
 
         internal readonly RenderWindow Window;
         internal World PhysicsWorld;
@@ -25,12 +25,11 @@ namespace Nubico.GameBase
         /// <summary>
         /// Список нажатых клавиш на текущем кадре
         /// </summary>
-        public readonly Dictionary<Keyboard.Key, bool> PressedKeys = new Dictionary<Keyboard.Key, bool>();
+        public readonly Dictionary<Keyboard.Key, bool> PressedKeys = new();
         /// <summary>
         /// Список нажатых кнопок мыши на текущем кадре
         /// </summary>
-        public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClicked)> ClickedMouseButtons =
-            new Dictionary<Mouse.Button, (int, int, bool)>();
+        public readonly Dictionary<Mouse.Button, (int x, int y, bool IsAlreadyClicked)> ClickedMouseButtons = new();
 
         /// <summary>
         /// Контроллер музыки - общий для всего игрового приложения

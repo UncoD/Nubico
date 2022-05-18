@@ -6,7 +6,7 @@ namespace ExampleGame
     {
         public MyFirstGame(int width, int height, string name) : base(width, height, name)
         {
-            DrawObjectBorders = true;
+            DrawObjectBorders = false;
         }
 
         public void MyMethod()

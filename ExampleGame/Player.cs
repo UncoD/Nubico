@@ -78,10 +78,10 @@ namespace ExampleGame
             Velocity = new Vector2f(0, 0);
         }
 
-        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool IsAlreadyClicked)
+        public override void OnMouseClick(Mouse.Button mouseButton, Vector2i position, bool isAlreadyClicked)
         {
             // Проверяет, что кликнули по Игроку один раз
-            if (HoverOnThis() && !IsAlreadyClicked)
+            if (HoverOnThis() && !isAlreadyClicked)
             {
                 Console.WriteLine(position);
             } 
