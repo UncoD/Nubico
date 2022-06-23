@@ -16,12 +16,12 @@ namespace ExamplePhysicsGame
                 {
                     var body = new RectangleBody
                     (
-                        new Vector2f(100, 10),
+                        new Vector2f(100, 100),
                         new Vector2f(180 + i * 100, 700),
                         new BodyParams { Density = 1, Friction = 0.3f, Restitution = 0.1f },
                         true
                     );
-                    var obj = new PhysicsObject(body);
+                    var obj = new PhysicsObject(body, pathToTexture: "./ground.png");
                     obj.Scale = new Vector2f(8, 8);
                     AddToScene(obj);
                 }
@@ -44,7 +44,7 @@ namespace ExamplePhysicsGame
                             60, (Vector2f)position,
                             new BodyParams { Density = 1, Friction = 0.3f, Restitution = 0.8f }
                         );
-                        var obj = new PhysicsObject(body, "./enemy.png");
+                        var obj = new PhysicsObject(body, pathToTexture: "./enemy.png");
                         obj.Scale = new Vector2f(6, 6);
                         AddToScene(obj);
                         break;

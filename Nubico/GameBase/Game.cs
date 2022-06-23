@@ -46,7 +46,8 @@ namespace Nubico.GameBase
         public bool DrawObjectBorders = false;
 
         private Vector2f _gravity;
-        public Vector2f Gravity {
+        public Vector2f Gravity
+        {
             get => _gravity;
             set
             {

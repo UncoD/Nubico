@@ -1,18 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <PackageId>UncoD.Nubico</PackageId>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <AssemblyVersion>1.2.1</AssemblyVersion>
+        <FileVersion>1.2.1</FileVersion>
+        <Version>1.2.1</Version>
+        <Authors>UncoD</Authors>
+        <Title>Nubico</Title>
+		<Description>A game framework based on SFML.Net 2.5.0</Description>
+		<PackageTags>game;games;gamedev;framework;nubico;play</PackageTags>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/UncoD/Nubico</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/UncoD/Nubico</RepositoryUrl>
+		<PackageIcon>logo.png</PackageIcon>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Box2D.NetStandard" Version="1.0.4" />
-    <PackageReference Include="SFML.Net" Version="2.5.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Box2D.NetStandard" Version="1.0.4" />
+        <PackageReference Include="SFML.Net" Version="2.5.0" />
+		<None Include="files\LICENSE.txt" Pack="true" PackagePath=""/>
+		<None Include="files\logo.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ namespace Nubico.Controllers
     /// <br>Контроллер спрайтов</br>
     /// <br>Управление отображением игрового объекта</br>
     /// </summary>
-    internal class SpriteController
+    internal class SpriteController : IDisposable
     {
         internal Sprite? CurrentSprite { get; private set; }
         private string currentAnimation = "";
@@ -221,6 +221,14 @@ namespace Nubico.Controllers
             if (CurrentSprite != null)
             {
                 target.Draw(CurrentSprite);
+            }
+        }
+
+        public void Dispose()
+        {
+            if (CurrentSprite != null)
+            {
+                ((IDisposable)CurrentSprite).Dispose();
             }
         }
     }

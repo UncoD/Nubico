@@ -12,6 +12,7 @@ namespace ExampleGame
         private Enemy enemy;
         private TextObject scoreText;
         private int score = 0;
+        private bool keyPressed = false;
 
         public MyScene(int text)
         {
@@ -21,7 +22,7 @@ namespace ExampleGame
             helloText.SetColor(Color.Cyan);
             AddToScene(helloText);
 
-            player = new Player(50, 225);
+            player = new Player(50, 234);
             AddToScene(player);
 
             enemy = new Enemy(Game.Width / 2.0f, 242);
@@ -42,13 +43,18 @@ namespace ExampleGame
             if (player.X <= enemy.X + 2 && player.X >= enemy.X - 2)
             {
                 score++;
+            }
+            if (!keyPressed)
+            {
                 scoreText.SetText(score);
             }
+            keyPressed = false;
         }
 
         public override void OnKeyPress(Dictionary<Keyboard.Key, bool> pressedKeys)
         {
             scoreText.SetText("Нажаты: " + string.Join(',', pressedKeys.Keys.ToList()));
+            keyPressed = true;
         }
     }
 }

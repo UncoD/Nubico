@@ -1,11 +1,9 @@
 using Nubico.Controllers;
 using Nubico.GameBase;
 using Nubico.Interfaces;
-using Nubico.Objects.Physics;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using System;
 
 namespace Nubico.Objects
 {
